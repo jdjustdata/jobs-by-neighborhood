@@ -1,34 +1,27 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+
+from location import Location
 
 app = Flask(__name__)
 app.secret_key = "rendermaps"
 
-api_key = None
-with open(os.getcwd()+"/keys.txt", "r") as key_doc:
-    api_key = key_doc.read()
 
-class Location(object):
-
-    def __init__(self, neighborhood, city):
-        self.url = None
-        self.head =  "https://maps.googleapis.com/maps/api/staticmap"
-        self.zoom = "13"
-        self.size = "500x400"
-        self.neighborhood = neighborhood
-        self.city = city
-        self.state = "IL"
-
-    def build_url(self):
-        self.url = self.head + "?" + "center=" + self.neighborhood + ","+ self.city + "," + self.state + "&zoom=" + self.zoom + "&size=" + self.size + "&key=" + api_key
-
-        self.url.replace(" ", "+").replace(",", "%2C")
-        return self
 
 @app.route("/")
 def index():
-    return render_template("index.html", location=Location("Logan Square", "Chicago").build_url())
+    #set default map
+    n = "Logan Square"
+    if request.args.get('neighborhood'):
+        n = request.args.get('neighborhood')
+    return render_template("index.html", location=Location(n).build_url())
+
+
+@app.route("/", defaults={'path': ''})
+@app.route('/<path:path>')
+def not_found_route(path):
+    return redirect('/')
 
 
 if __name__ == '__main__':
