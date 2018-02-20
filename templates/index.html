@@ -3,10 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Map Page</title>
+    <link rel="shortcut icon" href="favicon.ico">
   </head>
   <body>
     <div class="container">
-      <h1>Index Page</h1>
+      <h1>Neighborhood Maps</h1>
+      <form class="ui form" action="/" method="get">
+        <label for="neighborhood">Neighborhood</label>
+        <input type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+        <input type="submit" value="Render Map">
+      </form>
       <div class="frame">
         <img src="{{ location.url }}" alt="Map of {{ location.neighborhood }}">
 
