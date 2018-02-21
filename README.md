@@ -1,5 +1,9 @@
 # jobs-by-neighborhood
-playing around with different map apis
+Search by role for entry-level jobs in your neighborhood
+
+## Requirements
+  * Python 3
+  * Python Packages: flask, requests
 
 ## resources
 
@@ -11,7 +15,7 @@ playing around with different map apis
   * GeoJson (test coordinates) -  http://geojson.io/#map=8/44.418/-88.064
 
 ### mapping tools
- Need to use a "Slippy" map
+Need to use a "Slippy" map
 
   * Mapbox - https://www.mapbox.com/api-documentation/#introduction
 
