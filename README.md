@@ -5,6 +5,49 @@ Search by role for entry-level jobs in your neighborhood
   * Python 3
   * Python Packages: flask, requests
 
+## Use Cases
+  - Users:
+    1. Job Seeker
+    2. Job Poster
+    3. Admin (Chamber of Commerce or similar)
+
+  - Job Seeker
+    * Use map to find open position in my neighborhood.
+    * Search by role for open positions in Chicago (maybe list of places sorted by distance from home)
+
+  - Job Poster
+    * submit a job posting w/ location, title, description, contact info
+    * remove a job posting that has been filled
+
+  - Admin
+    * confirm a job submission and have it appear on site
+    * remove job posting that has expired
+    * notify Job Poster of expired job posting
+
+## Objects, Methods, and Attributes
+  * Map (JavaScript)
+  * Display page
+    - Map
+    - List of Jobs
+    - Search bar (location, roles)
+  * Job
+    - Title (role)
+    - Company
+    - Location
+      * neighborhood (Lakeview, Ravenswood, etc.)
+      * street address
+      * Coordinates (for map rendering)
+    - Description
+    - Posted Date / Submission Date
+  * Job List
+    - filterBy / sortBy
+      * expiration
+      * location
+      * Role
+
+
+
+
 ## resources
 
   * our github - https://github.com/chihacknight/breakout-groups/issues/143
