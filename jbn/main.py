@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, redirect
 
-from jbn.location import Location
+from jbn.location import Location, Embedded
 
 app = Flask(__name__)
 app.secret_key = "rendermaps"
@@ -15,7 +15,7 @@ def index():
     n = "Logan Square"
     if request.args.get('neighborhood'):
         n = request.args.get('neighborhood')
-    return render_template("index.html", location=Location(n).build_url())
+    return render_template("index.html", location=Location(n).build_url(), embedded=Embedded(n).build_url())
 
 
 # default/404 redirect route
