@@ -21,17 +21,48 @@
       </form>
       <div class="jsMap" id="map"></div>
         <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
+        function initMap() {
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: {lat: 41.8876899, lng: -87.6345902}
+          });
+          //init bounds to center map
+          bounds = new google.maps.LatLngBounds();
+
+          // Create an array of alphabetical characters used to label the markers.
+          var labels = 'ABC';
+
+          // Add some markers to the map.
+          // Note: The code uses the JavaScript Array.prototype.map() method to
+          // create an array of markers based on a given "locations" array.
+          // The map() method here has nothing to do with the Google Maps API.
+          var markers = locations.map(function(location, i) {
+            marker = new google.maps.Marker({
+              position: location,
+              label: labels[i % labels.length]
+            });
+
+            loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+            bounds.extend(loc);
+
+            return marker;
+          });
+
+          // Add a marker clusterer to manage the markers.
+          var markerCluster = new MarkerClusterer(map, markers,
+              {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+          map.fitBounds(bounds);    //auto-zoom
+          map.panToBounds(bounds);  //auto-center
+        }
+        var locations = [
+          {lat: 41.8907072, lng: -87.6330895},
+          {lat: 41.8858598, lng: -87.6425105},
+          {lat: 41.8894773, lng: -87.6366516}
+        ];
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
