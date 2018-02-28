@@ -47,6 +47,17 @@ Search by role for entry-level jobs in your neighborhood
       * Role
 
 
+## IDEAS
+
+How to get data on places that have openings and filter out similar places that
+do not
+
+Web scraping service that constantly updates common locations
+    List of cleaning services, plumbers, etc.
+    Use our list to connect with Places API data to render the locations we need
+
+
+
 
 
 ## resources

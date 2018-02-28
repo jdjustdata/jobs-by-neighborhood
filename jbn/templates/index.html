@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <title>Map Page</title>
     <link rel="shortcut icon" href="favicon.ico">
+    <style media="screen">
+        #map {
+          height: 400px;
+          width: 600px;
+         }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -13,15 +19,25 @@
         <input type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
         <input type="submit" value="Render Map">
       </form>
+      <div class="jsMap" id="map"></div>
+        <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
+    </script>
 
-      <div class="slippy">
-        <iframe
-          width="600"
-          height="450"
-          frameborder="0" style="border:0"
-          src="{{ embedded.url }}" allowfullscreen>
-        </iframe>
-      </div>
+
     </div>
 
 
