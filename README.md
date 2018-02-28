@@ -13,7 +13,8 @@ Search by role for entry-level jobs in your neighborhood
 
   - Job Seeker
     * Use map to find open position in my neighborhood.
-    * Search by role for open positions in Chicago (maybe list of places sorted by distance from home)
+    * Search by role for open positions in Chicago (maybe list of places sorted
+      by distance from home)
 
   - Job Poster
     * submit a job posting w/ location, title, description, contact info
@@ -60,6 +61,6 @@ Search by role for entry-level jobs in your neighborhood
 ### mapping tools
 Need to use a "Slippy" map
 
-  * Mapbox - https://www.mapbox.com/api-documentation/#introduction
+  * Google Maps - https://developers.google.com/maps/documentation/javascript/
 
-  * Google Maps - https://developers.google.com/maps/documentation/static-maps/
+  * Mapbox - https://www.mapbox.com/api-documentation/#introduction
