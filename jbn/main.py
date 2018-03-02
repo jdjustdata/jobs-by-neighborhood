@@ -8,7 +8,7 @@ import api_keys
 app = Flask(__name__)
 app.secret_key = "rendermaps"
 
-api_key = api_keys.google_maps_key
+api_key = api_keys.mapbox_key
 
 
 @app.route("/")
