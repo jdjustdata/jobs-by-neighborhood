@@ -1,4 +1,5 @@
 # jobs-by-neighborhood
+Chi Hack Night Breakout Group. https://github.com/chihacknight/breakout-groups/issues/143
 Search by role for entry-level jobs in your neighborhood
 
 ## Requirements
@@ -72,6 +73,8 @@ Web scraping service that constantly updates common locations
 ### mapping tools
 Need to use a "Slippy" map
 
-  * Google Maps - https://developers.google.com/maps/documentation/javascript/
-
   * Mapbox - https://www.mapbox.com/api-documentation/#introduction
+
+  * Leafletjs - http://leafletjs.com/examples/quick-start/
+
+  * Google Maps - https://developers.google.com/maps/documentation/javascript/
