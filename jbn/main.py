@@ -3,13 +3,12 @@ import os
 from flask import Flask, render_template, request, redirect
 
 from jbn.location import Location, Embedded
+import api_keys
 
 app = Flask(__name__)
 app.secret_key = "rendermaps"
 
-api_key = None
-with open(os.getcwd()+"/keys.txt", "r") as key_doc:
-    api_key = key_doc.read()
+api_key = api_keys.google_maps_key
 
 
 @app.route("/")
