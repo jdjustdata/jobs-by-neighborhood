@@ -30,7 +30,11 @@ class Location(object):
 
     def retrieve_json(self):
         r = requests.get(self.url)
-        j = r.json()
+        return r.json()
+
+    def get_coordinates(self):
+        self.build_url()
+        j = self.retrieve_json()
         # reverse coordinates order
         latitude = j['features'][0]['center'][1]
         longitude = j['features'][0]['center'][0]

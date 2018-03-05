@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, redirect
 
-from jbn.location import Location, Embedded
+from jbn.location import Location
 import api_keys
 
 app = Flask(__name__)
@@ -13,11 +13,11 @@ api_key = api_keys.mapbox_key
 
 @app.route("/")
 def index():
-    #set default map
+    # set default map
     n = "Logan Square"
     if request.args.get('neighborhood'):
         n = request.args.get('neighborhood')
-    return render_template("index.html", location=Location(n).build_url(), embedded=Embedded(n).build_url(), api_key=api_key)
+    return render_template("index.html", location=Location(n).get_coordinates(), api_key=api_key)
 
 
 # default/404 redirect route
