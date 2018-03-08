@@ -19,6 +19,7 @@ def index():
     if request.args.get('neighborhood'):
         n = request.args.get('neighborhood')
     location = Location(n).get_coordinates()
+    # add_job(location)
     return render_template("index.html", location=location, api_key=api_key)
 
 
