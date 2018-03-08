@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, redirect
 
 from jbn.location import Location
+from db_script import add_job
 import api_keys
 
 app = Flask(__name__)
@@ -17,7 +18,8 @@ def index():
     n = "Logan Square"
     if request.args.get('neighborhood'):
         n = request.args.get('neighborhood')
-    return render_template("index.html", location=Location(n).get_coordinates(), api_key=api_key)
+    location = Location(n).get_coordinates()
+    return render_template("index.html", location=location, api_key=api_key)
 
 
 # default/404 redirect route
