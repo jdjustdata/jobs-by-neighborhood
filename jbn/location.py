@@ -20,6 +20,8 @@ class Location(object):
         self.city = " Chicago"
         self.state = " IL"
         self.coordinates = None
+        self.json = None
+
 
     def build_url(self):
         self.url = self.head + self.map_type + self.neighborhood + self.city + \
@@ -35,9 +37,9 @@ class Location(object):
     def get_coordinates(self):
         self.build_url()
         j = self.retrieve_json()
+        self.json = j
         # reverse coordinates order
         latitude = j['features'][0]['center'][1]
         longitude = j['features'][0]['center'][0]
         self.coordinates = [latitude, longitude]
         return self
-
