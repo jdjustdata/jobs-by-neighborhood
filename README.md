@@ -39,6 +39,8 @@ Search by role for entry-level jobs in your neighborhood
       * neighborhood (Lakeview, Ravenswood, etc.)
       * street address
       * Coordinates (for map rendering)
+    - Shift
+    - Tags
     - Description
     - Posted Date / Submission Date
   * Job List
@@ -71,7 +73,6 @@ Web scraping service that constantly updates common locations
   * GeoJson (test coordinates) -  http://geojson.io/#map=8/44.418/-88.064
 
 ### mapping tools
-Need to use a "Slippy" map
 
   * Mapbox - https://www.mapbox.com/api-documentation/#introduction
 
