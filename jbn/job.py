@@ -14,6 +14,5 @@ class Job(object):
         self.tags = job_data.get('tags')
 
     def add_to_database(self):
-        # TODO: move code from db_script.py here
+        # TODO: move add_job() from db_script.py here
         pass
-        
