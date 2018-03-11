@@ -1,0 +1,44 @@
+"""
+Sensitive settings will not be pushed to the Git
+Repository.
+
+To create and use a local copy of these settings,
+remove the .template from the file extension and
+edit the settings below to apply your own developer
+keys, passwords, or other sensitive information.
+"""
+
+# Django Application Secret Key
+SECRET_KEY = 'my-long-django-secret-key'
+
+# ADMINS will receive error code notifications from the server when DEBUG=False
+ADMINS = [
+    ]
+
+# Google reCaptcha for Human User Verification
+RECAPTCHA_SITE_KEY = ''
+RECAPTCHA_SECRET_KEY = ''
+
+# Google Maps
+GOOGLE_MAPS_KEY = ''
+
+# Mapbox Key
+MAPBOX_KEY = ''
+
+# AWS S3 Bucket Keys for Media File Uploads
+AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID'
+AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
+AWS_STORAGE_BUCKET_NAME = 'AWS_STORAGE_BUCKET_NAME'
+
+# Email Server Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+# Administrative Messages from the Server will use the
+# Email host address
+SERVER_EMAIL = EMAIL_HOST_USER
