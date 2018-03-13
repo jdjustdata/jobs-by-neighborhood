@@ -5,30 +5,19 @@
 
 <body>
     <div class="container">
-        <h1>Neighborhood Maps</h1>
-        <form class="ui form" action="/" method="get">
+        <h1 class="display-4 my-4">Neighborhood Jobs</h1>
+        <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
             <label for="neighborhood">Neighborhood</label>
-            <input type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+            <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
             <input type="submit" value="Render Map">
         </form>
         <p>Neighborhood = {{ location.neighborhood }} </p>
+        <p>Coordinates = {{location.coordinates}}</p>
         <div class="jsMap" id="mapid" style="height:480px;width:600px;">
         </div>
     
     
     </div>
-    <div class="customJs">
-        <script type="text/javascript">
-            var mymap = L.map('mapid').setView({{ location.coordinates }}, 15);
-            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-                maxZoom: 18,
-                id: 'mapbox.streets',
-                accessToken: '{{ api_key }}'
-            }).addTo(mymap);
-            //my favorite restaurant
-            var marker = L.marker([41.88559, -87.62771]).addTo(mymap);
-        </script>
-    </div>
+    {% include 'home/map_script.html' %}
 </body>
 {% endblock %}

@@ -32,10 +32,12 @@ ALLOWED_HOSTS = [
 ]
 
 # Domain Name used to display on template views
-DOMAIN_NAME = ""
+DOMAIN_NAME = "Jobs By Neighborhood"
+DOMAIN_ACRONYM = "JBN"
 DOMAIN_URL = ""
 
 # Media File Storage on Amazon S3
+if AWS_STORAGE_BUCKET_NAME is None: AWS_STORAGE_BUCKET_NAME = ''
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'main.storage_backends.MediaStorage'
 MEDIA_ROOT = 'https://s3.us-east-2.amazonaws.com/' + AWS_STORAGE_BUCKET_NAME

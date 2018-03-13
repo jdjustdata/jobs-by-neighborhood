@@ -12,7 +12,7 @@ else:
     from main.settings_sensitive import MAPBOX_KEY
 
 
-# Construct Location API
+# Construct and Use MapBox Location API
 class Location(object):
     def __init__(self, neighborhood):
         self.url = None
@@ -37,9 +37,11 @@ class Location(object):
         print self.url
         return self
 
+
     def retrieve_json(self):
         r = requests.get(self.url)
         return r.json()
+
 
     def get_coordinates(self):
         self.build_url()
