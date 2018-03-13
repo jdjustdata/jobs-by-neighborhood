@@ -5,6 +5,9 @@ Search by role for entry-level jobs in your neighborhood
 ## Requirements
   * Python 3
   * Python Packages: flask, requests
+  * Python Django Packages in requirements.txt
+  * To install Django requirements locally, use:
+    pip install -r requirements.txt
 
 ## Use Cases
   - Users:
@@ -61,6 +64,39 @@ Web scraping service that constantly updates common locations
 
 
 
+## GETTING STARTED IN DEVELOPMENT
+
+This section applies to the project conversion to Django.
+To setup this project locally, you must complete a couple small steps.
+Django is managed by a set of settings files. To keep this project
+secure and ready to run in multiple environments, there are a couple
+settings files located in the main directory:
+  * settings.py -- global settings
+  * settings_developer.py -- sets up the development environment
+    ** Not pushed to the Git Repository
+    ** You will need to remove the .template file extension when you first clone the directory, and edit this file for your local environment
+  * settings_deploy.py -- sets up the deployed/production environment
+  * settings_sensitive.py -- stores sensitive keys
+    ** NOT pushed to the Git Repository for security reasons
+    ** You will need to remove the .template file extension when you
+    first clone the directory, and edit this file for your local environment and protected keys.
+    ** NOTE: If you add sensitive keys to the project, please update the template file and inform the developer community so they can add their own keys to their local development environment
+  * settings_environ.py -- retrieves environmental variables set on the   server for the production environment
+    ** This is pushed to the Git Repository, and should not store sensitive information
+
+Run the server locally from the project root directory with:
+  python manage.py runserver
+
+## GETTING STARTED IN DEPLOYMENT
+
+This section applies to the project conversion to Django.
+To deploy this project to a production server, keep in mind the following:
+  * Django selects the appropriate settings from the variable DJANGO_SETTINGS_MODULE
+    - This is set by default in manage.py to settings_developer.py
+    - The default setting applies a development environment
+    - To override the default on a production environment, simply set an environmental variable on the server to:
+      "DJANGO_SETTINGS_MODULE": "main.settings_deploy"
+  * Set environmental variables on the server to store other sensitive keys and information with the appropriate key names matching settings_envrion.py
 
 
 ## resources

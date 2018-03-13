@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.git/
+.vscode/
+
 # C extensions
 *.so
 
@@ -52,11 +55,19 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
+*.pyc
+main/settings_developer.py
+main/settings_sensitive.py
+db.sqlite3
+staticfiles
+media/
 
 # Flask stuff:
 instance/
 .webassets-cache
+
+# JavaScript Folders
+static/base/js/scrollpos-styler/
 
 # Scrapy stuff:
 .scrapy

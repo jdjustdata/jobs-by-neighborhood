@@ -1,2 +1,2 @@
-google_maps_key =
-mapbox_key =
+google_maps_key = ''
+mapbox_key = ''

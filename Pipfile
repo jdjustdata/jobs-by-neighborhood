@@ -7,9 +7,17 @@ name = "pypi"
 
 [packages]
 
-flask = "*"
+dj-database-url = "==0.4.2"
+django = "*"
+gunicorn = "==19.7.1"
+django-heroku = "*"
+psycopg2 = "==2.7.3.2"
+whitenoise = "*"
 requests = "*"
 
+[requires]
+
+python_version = "2.7.14"
 
 [dev-packages]
 

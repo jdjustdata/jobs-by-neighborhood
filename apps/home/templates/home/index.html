@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block title %}{{title}}{% endblock %} 
+
+{% block body %}
+
+<body>
+    <div class="container">
+        <h1 class="display-4 my-4">Neighborhood Jobs</h1>
+        <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+            <label for="neighborhood">Neighborhood</label>
+            <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+            <input type="submit" value="Render Map">
+        </form>
+        <p>Neighborhood = {{ location.neighborhood }} </p>
+        <p>Coordinates = {{location.coordinates}}</p>
+        <div class="jsMap" id="mapid" style="height:480px;width:600px;">
+        </div>
+    
+    
+    </div>
+    {% include 'home/map_script.html' %}
+</body>
+{% endblock %}
