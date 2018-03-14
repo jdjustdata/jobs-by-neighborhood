@@ -98,7 +98,6 @@ To deploy this project to a production server, keep in mind the following:
       "DJANGO_SETTINGS_MODULE": "main.settings_deploy"
   * Set environmental variables on the server to store other sensitive keys and information with the appropriate key names matching settings_envrion.py
 
-
 ## resources
 
   * our github - https://github.com/chihacknight/breakout-groups/issues/143
