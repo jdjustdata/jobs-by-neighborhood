@@ -1,0 +1,50 @@
+"""
+Django settings for a development project
+To enable these settings, remove the .template
+file extension. This will save a local copy of
+settings_developer.
+Your local settings_developer.py will not be 
+included in the Git Repository. This will enable
+easy deployment in a production environment.
+
+Development settings are specific to a local 
+environment and enable debugging tools.
+
+These settings will be publicly available on a 
+Git Repository, and should not include any sensitive
+keys or information.
+
+Sensitive settings should be saved in:
+1) Your local developer's settings_sensitive.py
+for development environments
+2) The server's environment variables
+for production environments
+In this way, sensitive keys and password information
+will never be submitted to a public Git Repository
+"""
+
+from settings import *
+from settings_sensitive import *
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# List of strings representing the host/domain names that can server this Django site
+ALLOWED_HOSTS = []
+
+# Local Media File Storage -- Developer Settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'jobs.db'),
+    }
+}
