@@ -14,45 +14,7 @@ else:
 
 
 from ..geography.views import Location
-
-# MT Code to be moved elsewhere
-from ..jobs.views import Job
-from os import getcwd
-import sqlite3
-db_path = getcwd() + "/jobs.db"
-
-def retrieve_jobs(db):
-    query = """SELECT * FROM Jobs"""
-    conn = sqlite3.connect(db)
-    c = conn.cursor()
-    print(db_path)
-    retrieved = c.execute(query).fetchall()
-    for r in retrieved:
-        print(r)
-    conn.commit()
-    conn.close()
-    return retrieved
-
-def convert_db_row_to_dict(db_data):
-    dictionary = {
-        'title': db_data[1],
-        'postedDate': db_data[0],
-        'company': db_data[2],
-        'location': db_data[3],
-        # Neighborhood (db_data[4]) is not used
-        'shift': db_data[5],
-        'description': db_data[6],
-        'tags': ""
-    }
-    return dictionary
-
-
-def build_jobs(db_rows):
-    jobs_list = []
-    for row in db_rows:
-        jobs_list.append(Job(convert_db_row_to_dict(row)))
-    return jobs_list
-
+from ..jobs.views import Listings
 
 
 def index(request):
@@ -62,18 +24,12 @@ def index(request):
     # set default map
     location = Location(neighborhood).get_coordinates()
 
-    # add_job(location)
-    # Mike T
-    db_data = retrieve_jobs(db_path)
-    jobs = build_jobs(db_data)
-    for j in jobs:
-        print(j.location.coordinates)
+    jobs = Listings().retrieve_jobs().build_jobs()
 
     context = {
         'title': title,
         'location': location,
         'api_key': MAPBOX_KEY,
-        # MT Code
         'jobs': jobs
     }
     return render(request, "home/index.html", context)
