@@ -40,8 +40,6 @@ class Listings(list):
         conn = sqlite3.connect(self.db)
         c = conn.cursor()
         self.raw_data = retrieved = c.execute(query).fetchall()
-        for r in retrieved:
-            print(r)
         conn.commit()
         conn.close()
         return self
