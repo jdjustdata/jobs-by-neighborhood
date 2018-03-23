@@ -30,11 +30,9 @@ class Location(object):
 
 
     def build_url(self):
-        print MAPBOX_KEY
         self.url = self.head + self.map_type + self.neighborhood + self.city + \
                    self.state + self.response_type + "?access_token=" + MAPBOX_KEY
         self.url = self.url.replace(" ", "+").replace(",", "%2C")
-        print self.url
         return self
 
 
