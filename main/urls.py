@@ -28,6 +28,9 @@ urlpatterns = [
     url(r'^admin/', RedirectView.as_view(pattern_name='login', permanent=False)),
     url(r'^accounts/login/', LoginView.as_view(template_name='site_admin/login.html'), name='login'),
     url(r'^accounts/logout/', LogoutView.as_view(template_name='site_admin/logout.html'), name='logout'),
+
+    url(r'^business/', include('apps.business.urls'), name='business'),
+    url(r'^jobs/', include('apps.jobs.urls'), name='jobs'),
 ]
 
 if settings.DEBUG:
