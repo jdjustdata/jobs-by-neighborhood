@@ -3,8 +3,8 @@ Settings_environ will import environmental settings
 and sensitive information if the app is in production
 
 If the app is run locally in a development
-environment settings_developer will use settings in 
-your local settings_sensitive.py (not included in the 
+environment settings_developer will use settings in
+your local settings_sensitive.py (not included in the
 Git Repository)
 
 If the app is run on a server in a production
@@ -17,6 +17,7 @@ import os
 # Django Application Secret Key
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+DOMAIN_NAME = os.environ.get('DOMAIN_NAME')
 
 # ADMINS will receive error code notifications from the server when DEBUG=False
 ADMINS = os.environ.get('ADMINS')
