@@ -1,14 +1,32 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
-from django.shortcuts import render
-
-# Create your views here.
 from ..geography.views import Location
 from os import getcwd
 import sqlite3
 
 
+def create(request):
+    pass
+
+
+def update(request):
+    pass
+
+
+def get_one(request):
+    pass
+
+
+def get_all(request):
+    pass
+
+
+def get_area(request):
+    pass
+  
 class Job(object):
 
     def __init__(self, job_data):
