@@ -14,6 +14,8 @@ else:
 
 
 from ..geography.views import Location
+from ..jobs.views import Listings
+
 
 def index(request):
     title = DOMAIN_NAME
@@ -22,12 +24,13 @@ def index(request):
     # set default map
     location = Location(neighborhood).get_coordinates()
 
-    # add_job(location)
+    jobs = Listings().retrieve_jobs().build_jobs()
 
     context = {
         'title': title,
         'location': location,
-        'api_key': MAPBOX_KEY
+        'api_key': MAPBOX_KEY,
+        'jobs': jobs
     }
     return render(request, "home/index.html", context)
 

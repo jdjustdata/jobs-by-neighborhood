@@ -1,5 +1,10 @@
 <div class="customJs">
     <script type="text/javascript">
+        var coordsList = [];
+        {% for job in jobs %}
+        coordsList.push({{job.location.coordinates}});
+        {% endfor %}
+
         var mymap = L.map('mapid').setView({{ location.coordinates }}, 15);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -7,6 +12,7 @@
             id: 'mapbox.streets',
             accessToken: '{{ api_key }}'
         }).addTo(mymap);
+        addPins();
         //my favorite restaurant
         // var marker = L.marker({{location.coordinates}}).addTo(mymap)
             // .bindPopup('A test CSS3 popup.<br>{{location.neighborhood}}<br>Customizable.')
@@ -24,5 +30,12 @@
                 }
             };
         L.geoJSON(geojsonFeature).addTo(map);
+
+        function addPins() {
+          for(var i = 0; i < coordsList.length; i++) {
+            L.marker(coordsList[i]).addTo(mymap);
+          }
+
+        }
     </script>
 </div>

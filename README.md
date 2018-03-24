@@ -3,8 +3,8 @@ Chi Hack Night Breakout Group. https://github.com/chihacknight/breakout-groups/i
 Search by role for entry-level jobs in your neighborhood
 
 ## Requirements
-  * Python 3
-  * Python Packages: flask, requests
+  * ~~Python 3~~ Python 2.7 (for now)
+  * Python Packages: Django 1.11.5, requests
   * Python Django Packages in requirements.txt
   * To install Django requirements locally, use:
     pip install -r requirements.txt

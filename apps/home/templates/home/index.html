@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %}{{title}}{% endblock %} 
+{% block title %}{{title}}{% endblock %}
 
 {% block body %}
 
@@ -13,10 +13,25 @@
         </form>
         <p>Neighborhood = {{ location.neighborhood }} </p>
         <p>Coordinates = {{location.coordinates}}</p>
-        <div class="jsMap" id="mapid" style="height:480px;width:600px;">
+
+        <div class="row">
+        <div class="col">
+          <div class="jsMap" id="mapid" style="height:480px;width:600px;">
+          </div>
         </div>
-    
-    
+
+          <div class="col">
+            <div class="list-group">
+              {% for job in jobs %}
+              <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
+              at {{job.company}} <br/> Shift {{job.shift}} <br/> {{job.location.neighborhood}}</button>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+
+
     </div>
     {% include 'home/map_script.html' %}
 </body>
