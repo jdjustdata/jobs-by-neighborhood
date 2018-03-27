@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'storages',
     'localflavor',
+    'widget_tweaks',
     'apps.site_admin',
     'apps.business',
     'apps.home',

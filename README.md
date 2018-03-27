@@ -9,6 +9,11 @@ Search by role for entry-level jobs in your neighborhood
   * To install Django requirements locally, use:
     pip install -r requirements.txt
 
+  * Update March 2018 -- New pip requirement: django-localflavors --- used to collect geographic information (a managed list of states, urban centers, and zip codes)
+    pip install django-localflavors
+  * Update March 2018 -- New pip requirement: django-widget-tweaks --- used to help create customizeable and repeatable Bootstrap formatted forms with Django's form models
+    pip install django-widget-tweaks
+
 ## Use Cases
   - Users:
     1. Job Seeker

@@ -29,8 +29,8 @@ urlpatterns = [
     url(r'^accounts/login/', LoginView.as_view(template_name='site_admin/login.html'), name='login'),
     url(r'^accounts/logout/', LogoutView.as_view(template_name='site_admin/logout.html'), name='logout'),
 
-    url(r'^business/', include('apps.business.urls'), name='business'),
-    url(r'^jobs/', include('apps.jobs.urls'), name='jobs'),
+    url(r'^business/', include('apps.business.urls', namespace='business')),
+    url(r'^jobs/', include('apps.jobs.urls', namespace='jobs')),
 ]
 
 if settings.DEBUG:
