@@ -3,36 +3,36 @@
 
 {% block body %}
 
-<body>
-    <div class="container">
-        <h1 class="display-4 my-4">Neighborhood Jobs</h1>
-        <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
-            <label for="neighborhood">Neighborhood</label>
-            <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
-            <input type="submit" value="Render Map">
-        </form>
-        <p>Neighborhood = {{ location.neighborhood }} </p>
-        <p>Coordinates = {{location.coordinates}}</p>
+<div class="container">
+    <h1 class="display-4 my-4">Neighborhood Jobs</h1>
+    <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+        <label for="neighborhood">Neighborhood</label>
+        <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+        <input type="submit" value="Render Map">
+    </form>
+    <p>Neighborhood = {{ location.neighborhood }} </p>
+    <p>Coordinates = {{location.coordinates}}</p>
 
-        <div class="row">
-        <div class="col">
-          <div class="jsMap" id="mapid" style="height:480px;width:600px;">
-          </div>
-        </div>
-
-          <div class="col">
-            <div class="list-group">
-              {% for job in jobs %}
-              <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
-              at {{job.company}} <br/> Shift {{job.shift}} <br/> {{job.location.neighborhood}}</button>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-
-
-
+    <div class="row">
+    <div class="col">
+		<div class="jsMap" id="mapid" style="height:480px;width:600px;"></div>
     </div>
-    {% include 'home/map_script.html' %}
-</body>
+
+      <div class="col">
+        <div class="list-group">
+			{% for job in jobs %}
+			<button type="button" class="list-group-item list-group-item-action">
+				{{ job.title }} at {{job.company}}
+				<br/> 
+				Shift {{job.shift}}
+				<br/> 
+				{{job.location.neighborhood}}
+			</button>
+			{% endfor %}
+        </div>
+      </div>
+
+	</div>
+</div>
+{% include 'home/map_script.html' %}
 {% endblock %}
