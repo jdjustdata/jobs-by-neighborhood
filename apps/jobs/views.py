@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from main.settings_deploy import DOMAIN_NAME
 
 from ..geography.views import Location
 from os import getcwd
@@ -9,7 +10,22 @@ import sqlite3
 
 
 def create(request):
-    pass
+    title = DOMAIN_NAME
+    neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+
+    # set default map
+    location = Location(neighborhood).get_coordinates()
+
+    jobs = Listings().retrieve_jobs().build_jobs()
+
+    context = {
+        'title': title,
+        'location': location,
+        'api_key': MAPBOX_KEY,
+        'jobs': jobs
+    }
+
+    return render(request, "jobs/new.html", context)
 
 
 def update(request):
@@ -26,7 +42,7 @@ def get_all(request):
 
 def get_area(request):
     pass
-  
+
 class Job(object):
 
     def __init__(self, job_data):
