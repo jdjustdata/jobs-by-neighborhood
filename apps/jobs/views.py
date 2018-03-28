@@ -34,7 +34,7 @@ def create(request):
         'jobs': jobs
     }
 
-    return render(request, "jobs/new.html", context)
+    return render(request, "jobs/create.html", context)
 
 
 def update(request):
