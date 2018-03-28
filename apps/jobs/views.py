@@ -3,8 +3,17 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from main.settings_deploy import DOMAIN_NAME
+import main.settings_environ as settings_environ
+if settings_environ.MAPBOX_KEY != None:
+    # production settings; app is running on server
+    from main.settings_environ import MAPBOX_KEY
+else:
+    # development settings; app is running locally
+    from main.settings_sensitive import MAPBOX_KEY
+
 
 from ..geography.views import Location
+
 from os import getcwd
 import sqlite3
 
