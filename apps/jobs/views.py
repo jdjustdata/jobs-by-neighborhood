@@ -16,6 +16,7 @@ from ..geography.views import Location
 
 from os import getcwd
 import sqlite3
+import datetime
 
 
 def create(request):
@@ -40,6 +41,22 @@ def root(request):
     title = DOMAIN_NAME
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
 
+    if request.method == 'POST':
+        #INSERT NEW JOB INTO DATABASE
+        print('printing request.POST')
+        #job = [posted_date, title, company, address, neighborhood, shift, description]
+        job = [ str(datetime.date.today()),
+                request.POST.get('title', ''),
+                request.POST.get('company', ''),
+                request.POST.get('address', ''),
+                # TODO: geocode to get neighborhood from an address
+                request.POST.get('neighborhood', ''),
+                request.POST.get('shift', ''),
+                request.POST.get('description', '')
+               ]
+        print(job)
+        insert_into_db(job)
+
     # set default map
     location = Location(neighborhood).get_coordinates()
 
@@ -51,10 +68,6 @@ def root(request):
         'api_key': MAPBOX_KEY,
         'jobs': jobs
     }
-
-    if request.method == 'POST':
-        #INSERT NEW JOB INTO DATABASE
-        pass
 
     return render(request, "jobs/index.html", context)
 
@@ -73,6 +86,14 @@ def get_all(request):
 
 def get_area(request):
     pass
+
+
+def insert_into_db(job):
+    conn = sqlite3.connect(getcwd() + "/jobs.db")
+    c = conn.cursor()
+    c.execute("INSERT INTO 'Jobs' VALUES (?,?,?,?,?,?,?)", job)
+    conn.commit()
+    conn.close()
 
 class Job(object):
 
