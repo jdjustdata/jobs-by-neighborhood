@@ -52,10 +52,10 @@ def root(request):
         'jobs': jobs
     }
 
-    if request.method == 'GET':
+    if request.method == 'POST':
         #INSERT NEW JOB INTO DATABASE
         pass
-    
+
     return render(request, "jobs/index.html", context)
 
 
