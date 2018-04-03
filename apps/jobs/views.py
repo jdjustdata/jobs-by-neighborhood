@@ -36,6 +36,28 @@ def create(request):
 
     return render(request, "jobs/create.html", context)
 
+def root(request):
+    title = DOMAIN_NAME
+    neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+
+    # set default map
+    location = Location(neighborhood).get_coordinates()
+
+    jobs = Listings().retrieve_jobs().build_jobs()
+
+    context = {
+        'title': title,
+        'location': location,
+        'api_key': MAPBOX_KEY,
+        'jobs': jobs
+    }
+
+    if request.method == 'GET':
+        #INSERT NEW JOB INTO DATABASE
+        pass
+    
+    return render(request, "jobs/index.html", context)
+
 
 def update(request):
     pass
