@@ -13,28 +13,32 @@
 
 {% for field in form.visible_fields %}
 <div class="form-group row">
-    <div class="col-sm-2">
+    <div class="col-sm-2 d-flex align-items-center">
     {{ field.label_tag }} 
     </div>
-    <div class="col-sm-10">
-    {% if form.is_bound %} 
-        {% if field.errors %} 
-            {% render_field field class+="form-control is-invalid"%}
-        {% else %} 
-            {% render_field field class+="form-control is-valid" %} 
-        {% endif %} 
-    {% else %} 
-        {% render_field field|add_class:"form-control" %} 
-    {% endif %} 
-    </div>
-    {% if field.errors %}
-        {% for error in field.errors %}
-        <div class="invalid-feedback">
-            {{ error }}
+    <div class="col-sm-10 row">
+        <div class="col-md-8 col-sm-12">
+            {% if form.is_bound %} 
+                {% if field.errors %} 
+                    {% render_field field class+="form-control is-invalid"%} 
+                {% else %} 
+                    {% render_field field class+="form-control is-valid" %} 
+                {% endif %} 
+            {% else %} 
+                {% render_field field|add_class:"form-control" %} 
+            {% endif %} 
         </div>
-        {% endfor %}
-    {% else if field.help_text %}
-        <small class="form-text text-muted">{{ field.help_text }}</small>
-    {% endif %}
+        <div class="col-md-4 col-sm-12 d-flex align-items-center">
+            {% if field.errors %}
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+                {% endfor %}
+            {% elif field.help_text %}
+                <small class="form-text text-muted m-0">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endfor %}

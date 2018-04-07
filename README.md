@@ -13,6 +13,9 @@ Search by role for entry-level jobs in your neighborhood
     pip install django-localflavors
   * Update March 2018 -- New pip requirement: django-widget-tweaks --- used to help create customizeable and repeatable Bootstrap formatted forms with Django's form models
     pip install django-widget-tweaks
+  * Update April 2018 -- Added pip requirements: mapbox and geojson
+
+    --- rerun "pip install -r requirements.txt" to install new packages
 
 ## Use Cases
   - Users:

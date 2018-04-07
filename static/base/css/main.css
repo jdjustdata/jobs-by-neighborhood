@@ -14,3 +14,7 @@
     display: inline-block !important;
     width: auto !important;
 }
+.checkbox {
+    width: auto !important;
+    box-shadow: none !important;
+}

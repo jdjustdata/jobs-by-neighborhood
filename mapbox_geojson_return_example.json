@@ -1,0 +1,64 @@
+{
+  "attribution": "NOTICE: \xa9 2017 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained.",
+  "query": [
+    "3507",
+    "w",
+    "lawrence",
+    "ave",
+    "chicago"
+  ],
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "center": [
+        -87.717141,
+        41.96837
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.717141,
+          41.96837
+        ],
+        "interpolated": True
+      },
+      "text": "West Lawrence Avenue",
+      "place_type": [
+        "address"
+      ],
+      "properties": {},
+      "context": [
+        {
+          "text": "Albany Park",
+          "id": "neighborhood.296758"
+        },
+        {
+          "text": "60625",
+          "id": "postcode.8053941462594010"
+        },
+        {
+          "text": "Chicago",
+          "wikidata": "Q1297",
+          "id": "place.7071500072701850"
+        },
+        {
+          "short_code": "US-IL",
+          "text": "Illinois",
+          "wikidata": "Q1204",
+          "id": "region.224711"
+        },
+        {
+          "short_code": "us",
+          "text": "United States",
+          "wikidata": "Q30",
+          "id": "country.3145"
+        }
+      ],
+      "address": "3507",
+      "relevance": 1,
+      "type": "Feature",
+      "id": "address.3034116315557092",
+      "place_name": "3507 West Lawrence Avenue, Chicago, Illinois 60625, United States"
+    }
+  ]
+}
