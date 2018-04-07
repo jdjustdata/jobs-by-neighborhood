@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h1 class="my-4">Registered Businesses</h1>
+    <table class="table table-striped">
+        <thead class="text-center">
+            <th>Name</th>
+            <th>Industry</th>
+            <th>Website</th>
+            <th>Phone</th>
+            <th>Locations</th>
+        </thead>
+        {% for b in businesses %}
+        <tr>
+            <td>{{b.name}}</td>
+            <td>{{b.industry}}</td>
+            <td>{{b.website}}</td>
+            <td>{{b.phone}}</td>
+            <td class="text-center">
+                {% if b.locations.count > 0 %}
+                    {% for loc in b.locations.all %}
+                        <div class="col-sm-12">
+                            <a href="{% url 'business:edit_location' biz_id=b.id loc_id=loc.id %}">{{loc.neighborhood}}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="col-sm-12">
+                    <small><u><a href="{% url 'business:add_location' b.id %}">Add</a></u></small>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

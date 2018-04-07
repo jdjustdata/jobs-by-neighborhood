@@ -3,8 +3,13 @@
 {% block body %}
 
 <div class="container">
-    <h2 class="my-4">Create a New Business</h2>
-    <form  method="post" action="{% url 'business:create' %}">
+    <div class="my-4">
+        <div class="d-inline">
+            <h2 class="d-inline align-baseline">Add a New Location</h2>
+            <h3 class="d-inline mx-1 align-text-bottom">for <u>{{business.name}}</u></h3>
+        </div>
+    </div>
+    <form action="{% url 'business:create_location' id=business.id %}" method="post">
         {% csrf_token %}
         
         {% load widget_tweaks %}
@@ -27,7 +32,7 @@
             </div>
             <div class="col-sm-10 row">
                 <div class="col-md-8 col-sm-12">
-                {% if field.name != 'phone' %}
+                {% if field.name != 'phone' and field.name != 'is_primary' %}
                     {% if form.is_bound %} 
                         {% if field.errors %} 
                             {% render_field field class+="form-control is-invalid"%} 
@@ -37,7 +42,7 @@
                     {% else %} 
                         {% render_field field|add_class:"form-control" %} 
                     {% endif %} 
-                {% else %}
+                {% elif field.name == 'phone' %}
                     <input type="text" name="phone_0" maxlength="3" id="id_phone_0" class="phone form-control" size="3">
                     <span class="mx-1">-</span>
                     <input type="text" name="phone_1" maxlength="3" id="id_phone_1" class="phone form-control" size="3">
@@ -45,6 +50,8 @@
                     <input type="text" name="phone_2" maxlength="4" id="id_phone_2" class="phone form-control" size="4">
                     <span class="mx-1">Ext:</span>
                     <input type="text" name="phone_3" maxlength="5" id="id_phone_3" class="phone form-control" size="5">
+                {% elif field.name == 'is_primary' %}
+                    <input type="checkbox" name="is_primary" checked class="form-control checkbox" id="id_is_primary">
                 {% endif %}
                 </div>
                 <div class="col-md-4 col-sm-12 d-flex align-items-center">
@@ -61,20 +68,7 @@
             </div>
         </div>
         {% endfor %}
-                
-
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    
-    <div class="my-5">
-        <div class="my-1">
-
-            {{choices}}
-        </div>
-        <div class="my-1">
-            {{sub_choices}}
-        </div>
-    </div>
 </div>
-
 {% endblock %}

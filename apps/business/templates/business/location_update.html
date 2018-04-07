@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h2 class="my-4"><u>{{business.name}}</u> <small><em>({{location.neighborhood}})</em></small></h2>
+    <div class="row">
+        <div class="col-md-8">
+            <form action="{% url 'business:update_location' biz_id=business.id loc_id=location.id %}" method="post">
+                {% csrf_token %}
+
+                {% load widget_tweaks %}
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% for field in form.visible_fields %}
+                <div class="form-group row">
+                    <div class="col-sm-2 d-flex align-items-center">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-sm-10 row">
+                        <div class="col-md-7 col-sm-12">
+                            {% if field.name != 'phone' and field.name != 'is_primary' %}
+                                {% if form.is_bound %}
+                                    {% if field.errors %}
+                                        {% render_field field class+="form-control is-invalid"%}
+                                    {% else %}
+                                        {% render_field field class+="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                    {% render_field field|add_class:"form-control" %}
+                                {% endif %}
+                            {% elif field.name == 'phone' %}
+                                {{ field }}
+                            {% elif field.name == 'is_primary' %}
+                                {{ field }}
+                            {% endif %}
+                        </div>
+                        <div class="col-md-5 col-sm-12 d-flex align-items-center">
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                            {% elif field.help_text %}
+                                <small class="form-text text-muted m-0">{{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-4 px-0">
+            <div class="col-sm-12 px-0">
+                <h5>Other Locations</h5>
+                <table class="table table-striped col-sm-12">
+                    {% for loc in locations %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'business:edit_location' biz_id=business.id loc_id=loc.id %}">
+                                {{ loc.name }}
+                            </a>
+                        </td>
+                        <td>{{ loc.zipcode }}</td>
+                        <td>{{ loc.phone }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+            <div class="col-sm-12 px-0">
+                <div class="jsMap" id="mapid" style="height:300px;width:350px;">
+                </div>
+            </div>
+        </div>
+    </div>
+{% include 'business/map_script.html' %}
+</div>
+{% endblock %}
