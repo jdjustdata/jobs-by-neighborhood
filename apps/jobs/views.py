@@ -132,13 +132,13 @@ class Listings(list):
 
     def convert_db_row_to_dict(self, db_data):
         dictionary = {
-            'title': db_data[1],
-            'postedDate': db_data[0],
-            'company': db_data[2],
-            'location': db_data[3],
-            # Neighborhood (db_data[4]) is not used
-            'shift': db_data[5],
-            'description': db_data[6],
+            'title': db_data[2],
+            'postedDate': db_data[1],
+            'company': db_data[3],
+            'location': db_data[4],
+            # Neighborhood (db_data[5]) is not used
+            'shift': db_data[6],
+            'description': db_data[7],
             'tags': ""
         }
         return dictionary
