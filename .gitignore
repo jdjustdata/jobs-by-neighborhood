@@ -60,6 +60,7 @@ coverage.xml
 main/settings_developer.py
 main/settings_sensitive.py
 # db.sqlite3
+jobs.db
 staticfiles
 media/
 
