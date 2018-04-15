@@ -17,9 +17,11 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import login, logout, LoginView, LogoutView
+from django.contrib.auth.views import login, logout, LogoutView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.base import RedirectView
+
+from apps.site_admin.views import SignUpView, LoginView
 admin.autodiscover()
 
 urlpatterns = [
@@ -28,7 +30,7 @@ urlpatterns = [
     url(r'^admin/', RedirectView.as_view(pattern_name='login', permanent=False)),
     url(r'^accounts/login/', LoginView.as_view(template_name='site_admin/login.html'), name='login'),
     url(r'^accounts/logout/', LogoutView.as_view(template_name='site_admin/logout.html'), name='logout'),
-
+    url(r'^accounts/register/$', SignUpView.as_view(template_name='site_admin/signup.html'), name='signup'),
     url(r'^business/', include('apps.business.urls', namespace='business')),
     url(r'^jobs/', include('apps.jobs.urls', namespace='jobs')),
 ]

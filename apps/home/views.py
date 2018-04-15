@@ -24,7 +24,8 @@ def index(request):
     # set default map
     location = Location(neighborhood).get_coordinates()
 
-    jobs = Listings().retrieve_jobs().build_jobs()
+    # jobs = Listings().retrieve_jobs().build_jobs()
+    jobs = []
 
     context = {
         'title': title,

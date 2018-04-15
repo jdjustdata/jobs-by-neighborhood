@@ -7,6 +7,8 @@ from django.core.validators import RegexValidator, EmailValidator, URLValidator
 from main.settings_deploy import DOMAIN_NAME
 from datetime import date, datetime, timedelta
 
+from django.contrib.auth.models import User
+
 # Imported filter was created to sort database queries ignoring letter case
 from ..app_filters import case_insensitive_criteria
 from industries import INDUSTRY_INDEX
@@ -28,10 +30,16 @@ INDUSTRY_NAME = 'industry_title'
 SUBINDUSTRIES = 'sub_industries'
 JSON_FILE = os.path.join(BASE_DIR, 'static', 'base', 'json', 'naics_industries.json')
 INDUSTRY_INDEX_FILE = os.path.join(BASE_DIR, 'apps', 'business', 'industries.py')
+
 PHONE_REGEX = RegexValidator(
     regex=r'^\d{3}-\d{3}-\d{4}(\sext.\d{1,5})?$',
     message="Phone number must be entered in the format: '999-999-9999'.")
 
+STATUS_CODES = [
+    ('submitted', 'Submitted'),
+    ('review', 'Under Review'),
+    ('approved', 'Approved')
+]
 
 def get_industry_choices(key_field=INDUSTRY_KEY_FIELD):
     # Return a tuple of field choices from a json file of industry categories
@@ -166,7 +174,25 @@ class Business(models.Model):
         blank=True,
         validators=[PHONE_REGEX]
     )
+    primary_poc = models.CharField(
+        max_length=50,
+        blank=True
+    )
+    poc_role = models.CharField(
+        max_length=30,
+        blank=True
+    )
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name="businesses_created"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=10,
+        default="submitted",
+        choices=STATUS_CODES
+    )
     updated_at = models.DateTimeField(auto_now=True)
     objects = BusinessManager()
 
@@ -188,7 +214,9 @@ class Location(models.Model):
     is_primary = models.BooleanField(default=True)
     street = models.CharField(
         max_length=50,
-        default=""
+        default="",
+        blank=True,
+        null=True
     )
     city = models.CharField(
         max_length=50,
@@ -199,7 +227,9 @@ class Location(models.Model):
         default="IL",
         choices=US_STATES
     )
-    zipcode = USZipCodeField()
+    zipcode = USZipCodeField(
+        blank=True
+    )
     longitude = models.DecimalField(
         max_digits=12,
         decimal_places=8,
@@ -221,5 +251,3 @@ class Location(models.Model):
         validators=[PHONE_REGEX]
     )
     objects = LocationManager()
-
-

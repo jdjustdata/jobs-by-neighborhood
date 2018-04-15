@@ -1,4 +1,4 @@
-from django.forms import ModelForm, EmailInput, URLInput
+from django.forms import ModelForm, EmailInput, URLInput, TextInput
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from datetime import date, datetime
@@ -19,6 +19,11 @@ class NewBusiness(ModelForm):
         self.fields['industry'].help_text = "What is the primary industry for your business?"
         self.fields['website'].help_text = "Businesses with website and contact information are more likely to get interested applicants."
 
+        self.fields['primary_poc'].label = "Primary Contact"
+        self.fields['poc_role'].label = "Role (Contact)"
+        self.fields['primary_poc'].help_text = "Who is the primary person that should be contacted for job verification?"
+        self.fields['poc_role'].help_text = "What is this person's role?"
+
     class Meta:
         model = Business
         fields = [
@@ -27,12 +32,15 @@ class NewBusiness(ModelForm):
             'subindustry',
             'website',
             'email',
-            'phone'
+            'phone',
+            'primary_poc',
+            'poc_role'
         ]
         widgets = {
-            'email': EmailInput,
-            'website': URLInput,
-            'phone': USPhoneNumberMultiWidget()
+            'email': EmailInput(attrs={'placeholder': 'email@domain.com'}),
+            'website': URLInput(attrs={'placeholder': 'http://www.webaddress.com'}),
+            'phone': USPhoneNumberMultiWidget(),
+            'poc_role': TextInput(attrs={'placeholder': 'E.g., Manager, Human Resources Manager'})
         }
 
 

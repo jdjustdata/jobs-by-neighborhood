@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'storages',
     'localflavor',
     'widget_tweaks',
+    'crispy_forms',
+    'apps',
     'apps.site_admin',
     'apps.business',
     'apps.home',
@@ -108,6 +110,9 @@ LOGIN_REDIRECT_URL = ''
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+
+# Django-Crispy-Forms used to autogenerate formatted forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
