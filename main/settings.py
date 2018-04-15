@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'storages',
     'localflavor',
-    'widget_tweaks',
+    # 'widget_tweaks',
     'crispy_forms',
     'apps',
     'apps.site_admin',
