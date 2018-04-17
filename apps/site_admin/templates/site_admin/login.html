@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+
+{% block body %}
+<div id="login-view" class="container">
+    <div class="row center-vertical">
+        <div id="login-view-card" class="col-md-6 col-sm-10 mx-auto my-5">
+            <div class="card">
+                <div class="card-header mx-0 navbar-brand bg-primary">
+                    <h4 class="text-white">User Account</h4>
+                </div>
+                <div class="card-body">
+                    {% load crispy_forms_tags %}
+                    {% crispy form %}
+                </div>
+                <div class="footer bg-secondary p-4">
+                    <a class="login-view-footer" 
+                        href="{% url 'signup' %}" 
+                        role="button">
+                        <h5><u>Don't have an account?</u></h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

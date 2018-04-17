@@ -1,0 +1,20 @@
+/* 
+    Overwrite Bootstrap row margin
+    to prevent overflow outside of
+    a flex container
+*/
+.row-container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.phone {
+    display: inline-block !important;
+    width: auto !important;
+}
+.checkbox {
+    width: auto !important;
+    box-shadow: none !important;
+}
