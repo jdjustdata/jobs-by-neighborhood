@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
 
 import json, geojson
 import main.settings_environ as settings_environ
@@ -16,6 +17,7 @@ from forms import NewBusiness, NewLocation
 from models import Business, BusinessManager, Location, get_industry_choices, get_industry_subchoices, index_industries
 
 
+@login_required
 def create_form(request):
     form = NewBusiness()        # New business form template
     index_industries()          # Refresh the industry index from the industry JSON
@@ -30,13 +32,16 @@ def create_form(request):
     return render(request, 'business/create.html', context)
 
 
+@login_required
 def create_submit(request):
     if request.method == 'POST':
         # use forms.py to validate form data
         form = NewBusiness(request.POST)
         if form.is_valid():
             # form data is valid
-            business = form.save()      # Create business object
+            business = form.save(commit=False)  # Create business object but don't save to db
+            business.created_by = request.user
+            business.save()
             return redirect(reverse('business:add_location', kwargs={'id':business.id}))
         else:
             # form data has validation errors
@@ -44,6 +49,7 @@ def create_submit(request):
     return redirect(reverse('business:add'))
 
 
+@login_required
 def add_location_form(request, id):
     business = get_object_or_404(Business, id=id)
     form = NewLocation()
@@ -54,6 +60,8 @@ def add_location_form(request, id):
     }
     return render(request, 'business/location_add.html', context)
 
+
+@login_required
 def add_location_submit(request, id):
     if request.method == 'POST':
         # use forms.py to validate form data
@@ -93,6 +101,7 @@ def add_location_submit(request, id):
     return redirect(reverse('business:add_location', kwargs={'id': id}))
 
 
+@login_required
 def update_location_form(request, biz_id, loc_id):
     business = get_object_or_404(Business, id=biz_id)
     location = get_object_or_404(Location, id=loc_id)
@@ -109,6 +118,7 @@ def update_location_form(request, biz_id, loc_id):
     return render(request, 'business/location_update.html', context)
 
 
+@login_required
 def update_location_submit(request, biz_id, loc_id):
     if request.method == 'POST':
         # use forms.py to validate form data

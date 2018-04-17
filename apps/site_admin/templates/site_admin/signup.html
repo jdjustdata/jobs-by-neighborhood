@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block title %}Register | {{ block.super }}{% endblock %}
+
+{% block headline %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Register to contribute to our job data!</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% load crispy_forms_tags %}
+    {% crispy form %}
+</div>
+{% endblock %}

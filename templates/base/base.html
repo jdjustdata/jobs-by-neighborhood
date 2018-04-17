@@ -59,12 +59,19 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{% static 'base/img/favicon.ico' %}">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Jobs by Neighborhood{% endblock %}</title>
 </head>
 <body>
 
     {% include 'base/navbar.html' %}
-
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    {% block headline %}{% endblock headline %}
     {% block body %}
     {% endblock %}
     

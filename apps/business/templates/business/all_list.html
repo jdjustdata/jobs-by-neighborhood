@@ -10,6 +10,7 @@
             <th>Industry</th>
             <th>Website</th>
             <th>Phone</th>
+            <th>Status</th>
             <th>Locations</th>
         </thead>
         {% for b in businesses %}
@@ -17,7 +18,18 @@
             <td>{{b.name}}</td>
             <td>{{b.industry}}</td>
             <td>{{b.website}}</td>
-            <td>{{b.phone}}</td>
+            <td class="text-center">{{b.phone}}</td>
+            <td class="text-center">
+                <div class="col-sm-12">
+                    {{b.status}}
+                </div>
+                <div class="col-sm-12">
+                    <small>Created by {{b.created_by}}</small>
+                </div>
+                <div class="col-sm-12">
+                    <small>{{b.created_at}}</small>
+                </div>
+            </td>
             <td class="text-center">
                 {% if b.locations.count > 0 %}
                     {% for loc in b.locations.all %}

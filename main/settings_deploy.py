@@ -29,6 +29,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'jobsbyneighborhood.herokuapp.com',
 ]
 
 # Domain Name used to display on template views
