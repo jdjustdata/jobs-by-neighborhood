@@ -13,6 +13,8 @@ else:
 
 
 from ..geography.views import Location
+from ..business.models import BusinessManager
+from models import Job
 
 from os import getcwd
 import sqlite3
