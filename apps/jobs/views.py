@@ -28,7 +28,7 @@ def create(request):
     # set default map
     location = Location(neighborhood).get_coordinates()
 
-    jobs = Listings().retrieve_jobs().build_jobs()
+    jobs = Listings().retrieve_jobs()
 
     context = {
         'title': title,
@@ -74,7 +74,7 @@ def root(request):
     location = Location(neighborhood).get_coordinates()
 
     # TODO: This should come from the Jobs model
-    jobs = Listings().retrieve_jobs().build_jobs()
+    jobs = Listings().retrieve_jobs()
 
     context = {
         'title': title,
@@ -136,13 +136,7 @@ class Listings(list):
         self.raw_data = None
 
     def retrieve_jobs(self):
-        query = """SELECT * FROM Jobs"""
-        conn = sqlite3.connect(self.db)
-        c = conn.cursor()
-        self.raw_data = retrieved = c.execute(query).fetchall()
-        conn.commit()
-        conn.close()
-        return self
+        return models.Job.objects.all()
 
     def convert_db_row_to_dict(self, db_data):
         dictionary = {
