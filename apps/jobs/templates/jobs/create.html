@@ -16,8 +16,13 @@
                 <input type="text" class="form-control" name="title" placeholder="Job Title">
               </div>
               <div class="form-group col-md-5">
-                <label for="company">Company</label>
-                <input type="text" class="form-control" name="company" placeholder="Company Name">
+                <label for="company">Business</label>
+                <select class="form-control">
+                  <option>Select a Business</option>
+                  {% for business in businesses %}
+                  <option value="{{ business.id }}">{{ business.name }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="form-group col-md-2">
                 <label for="shift">Shift</label>
@@ -26,6 +31,30 @@
                   <option>2</option>
                   <option>3</option>
                 </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="job_function">Job Function</label>
+                <input type="text" class="form-control" name="job_function" placeholder="Job Function">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="employment_type">Employment Type</label>
+                <select class="form-control">
+                  <option>Select an Employment Type</option>
+                  <option>Full-Time</option>
+                  <option>Part-Time</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="instructions">Instructions</label>
+                <textarea class="form-control" name="instructions" rows="3" placeholder="How do I apply for this job?"></textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="poc">Point of Contact</label>
+                <input type="text" class="form-control" name="poc" placeholder="name of Hiring Manager">
               </div>
             </div>
             <div class="form-row">
@@ -64,6 +93,16 @@
               <div class="form-group col">
                 <label for="description">Job Description</label>
                 <textarea class="form-control" name="description" rows="5" placeholder="Short description of the job and any additional info that a job seeker might want to know. Hours, Travel, Need own vehicle, etc..."></textarea>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="skills">Skills</label>
+                <textarea class="form-control" name="skills" rows="5" placeholder="List of skills that potential employees should have, such as Microsoft Excel, frycooking, etc."></textarea>
+              </div>
+              <div class="form-group col-6">
+                <label for="qualifications">Qualifications</label>
+                <textarea class="form-control" name="qualifications" rows="5" placeholder="e.g., Customer-facing experience, drivers licence, etc."></textarea>
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit Posting</button>
