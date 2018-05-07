@@ -47,21 +47,33 @@ def root(request):
         #INSERT NEW JOB INTO DATABASE
         print('printing request.POST')
         #job = [posted_date, title, company, address, neighborhood, shift, description]
-        job = [ str(datetime.date.today()),
-                request.POST.get('title', ''),
-                request.POST.get('company', ''),
-                request.POST.get('address', ''),
-                # TODO: geocode to get neighborhood from an address
-                request.POST.get('neighborhood', ''),
-                request.POST.get('shift', ''),
-                request.POST.get('description', '')
-               ]
-        print(job)
-        insert_into_db(job)
+        job = Job(
+            title = request.POST.get('title', ''),
+            business = request.POST.get('company', ''),
+            # TODO: Add to web form
+            location = request.POST.get('location', ''),
+            #TODO: Add to form
+            job_function = request.POST.get('function', ''),
+            #TODO: add to form
+            employment_type = request.POST.get('employment_type', ''),
+            description = request.POST.get('description', ''),
+            #TODO: add to form
+            skills = request.POST.get('skills', ''),
+            #TODO: add to form
+            qualifications = request.POST.get('qualifications', ''),
+            #TODO: add to form
+            instructions = request.POST.get('instructions', ''),
+            #TODO: add to form
+            poc = request.POST.get('poc', ''),
+            email = request.POST.get('email', ''),
+            phone = request.POST.get('phone', '')
+            )
+        job.save()
 
     # set default map
     location = Location(neighborhood).get_coordinates()
 
+    # TODO: This should come from the Jobs model
     jobs = Listings().retrieve_jobs().build_jobs()
 
     context = {
