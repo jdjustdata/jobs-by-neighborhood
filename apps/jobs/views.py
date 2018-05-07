@@ -27,13 +27,16 @@ def create(request):
 
     # set default map
     location = Location(neighborhood).get_coordinates()
+    # TODO: This object must be refactored in map_script.html to work properly
+    jobs = models.Job.objects.get_all()
 
-    jobs = Listings().retrieve_jobs()
+    businesses = BusinessManager().get_all()
 
     context = {
         'title': title,
         'location': location,
         'api_key': MAPBOX_KEY,
+        'businesses': businesses,
         'jobs': jobs
     }
 
