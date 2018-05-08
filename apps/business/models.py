@@ -250,4 +250,4 @@ class Location(models.Model):
         blank=True,
         validators=[PHONE_REGEX]
     )
-    objects = LocationManager()
+    #objects = LocationManager()
