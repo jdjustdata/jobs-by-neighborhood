@@ -12,8 +12,9 @@ else:
     from main.settings_sensitive import MAPBOX_KEY
 
 
-from ..geography.views import Location
+from ..geography.views import Location as MapLocation
 from ..business.models import BusinessManager
+from ..business.models import Location
 import models
 
 from os import getcwd
@@ -26,7 +27,7 @@ def create(request):
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
 
     # set default map
-    location = Location(neighborhood).get_coordinates()
+    location = MapLocation(neighborhood).get_coordinates()
     # TODO: This object must be refactored in map_script.html to work properly
     jobs = models.Job.objects.get_all()
 
@@ -74,7 +75,7 @@ def root(request):
         job.save()
 
     # set default map
-    location = Location(neighborhood).get_coordinates()
+    location = MapLocation(neighborhood).get_coordinates()
 
     # TODO: This should come from the Jobs model
     jobs = Listings().retrieve_jobs()
@@ -119,7 +120,7 @@ class Job(object):
         self.posted_date = job_data.get('postedDate')
         self.company = job_data.get('company')
         # this will be a Location() object
-        self.location = Location(job_data.get('location')).get_coordinates()
+        self.location = MapLocation(job_data.get('location')).get_coordinates()
         self.shift = job_data.get('shift')
         self.description = job_data.get('description')
         self.tags = job_data.get('tags')
