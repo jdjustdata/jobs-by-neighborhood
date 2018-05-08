@@ -55,19 +55,15 @@ def root(request):
         #job = [posted_date, title, company, address, neighborhood, shift, description]
         job = models.Job(
             title = request.POST.get('title', ''),
+            # TODO: error: this needs to get the Business() object
             business = request.POST.get('company', ''),
-            # TODO: Add to web form
+            # TODO: probably error: this needs to get the Location() object
             location = request.POST.get('location', ''),
-            #TODO: Add to form
             job_function = request.POST.get('job_function', ''),
-            #TODO: add to form
             employment_type = request.POST.get('employment_type', ''),
             description = request.POST.get('description', ''),
-            #TODO: add to form
             skills = request.POST.get('skills', ''),
-            #TODO: add to form
             qualifications = request.POST.get('qualifications', ''),
-            #TODO: add to form
             instructions = request.POST.get('instructions', ''),
             #TODO: add to form
             poc = request.POST.get('poc', ''),
