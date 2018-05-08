@@ -32,12 +32,14 @@ def create(request):
     jobs = models.Job.objects.get_all()
 
     businesses = BusinessManager().get_all()
+    business_locations = Location.objects.all()
 
     context = {
         'title': title,
         'location': location,
         'api_key': MAPBOX_KEY,
         'businesses': businesses,
+        'business_locations': business_locations,
         'jobs': jobs
     }
 
@@ -57,7 +59,7 @@ def root(request):
             # TODO: Add to web form
             location = request.POST.get('location', ''),
             #TODO: Add to form
-            job_function = request.POST.get('function', ''),
+            job_function = request.POST.get('job_function', ''),
             #TODO: add to form
             employment_type = request.POST.get('employment_type', ''),
             description = request.POST.get('description', ''),
