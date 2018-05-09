@@ -16,7 +16,7 @@
             <div class="list-group">
               {% for job in jobs %}
               <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
-              at {{job.company}} <br/> Shift {{job.shift}} <br/> {{job.location.neighborhood}}</button>
+              at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
               {% endfor %}
             </div>
           </div>

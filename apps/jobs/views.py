@@ -75,7 +75,7 @@ def root(request):
     location = MapLocation(neighborhood).get_coordinates()
 
     # TODO: This should come from the Jobs model
-    jobs = Listings().retrieve_jobs()
+    jobs = models.Job.objects.all()
 
     context = {
         'title': title,
