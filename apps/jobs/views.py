@@ -13,8 +13,7 @@ else:
 
 
 from ..geography.views import Location as MapLocation
-from ..business.models import BusinessManager
-from ..business.models import Location
+from ..business.models import Business, BusinessManager, Location
 import models
 
 from os import getcwd
@@ -56,9 +55,9 @@ def root(request):
         job = models.Job(
             title = request.POST.get('title', ''),
             # TODO: error: this needs to get the Business() object
-            business = request.POST.get('company', ''),
+            business = Business.objects.get(pk=request.POST.get('company', '')),
             # TODO: probably error: this needs to get the Location() object
-            location = request.POST.get('location', ''),
+            location = Location.objects.get(pk=request.POST.get('location', '')),
             job_function = request.POST.get('job_function', ''),
             employment_type = request.POST.get('employment_type', ''),
             description = request.POST.get('description', ''),
