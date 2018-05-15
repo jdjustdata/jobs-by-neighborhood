@@ -44,6 +44,7 @@ def create(request):
 
     return render(request, "jobs/create.html", context)
 
+
 def root(request):
     title = DOMAIN_NAME
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
