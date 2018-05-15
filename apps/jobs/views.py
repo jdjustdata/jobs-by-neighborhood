@@ -12,7 +12,9 @@ else:
     from main.settings_sensitive import MAPBOX_KEY
 
 
-from ..geography.views import Location
+from ..geography.views import Location as MapLocation
+from ..business.models import Business, BusinessManager, Location
+import models
 
 from os import getcwd
 import sqlite3
@@ -24,18 +26,24 @@ def create(request):
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
 
     # set default map
-    location = Location(neighborhood).get_coordinates()
+    location = MapLocation(neighborhood).get_coordinates()
+    # TODO: This object must be refactored in map_script.html to work properly
+    jobs = models.Job.objects.get_all()
 
-    jobs = Listings().retrieve_jobs().build_jobs()
+    businesses = BusinessManager().get_all()
+    business_locations = Location.objects.all()
 
     context = {
         'title': title,
         'location': location,
         'api_key': MAPBOX_KEY,
+        'businesses': businesses,
+        'business_locations': business_locations,
         'jobs': jobs
     }
 
     return render(request, "jobs/create.html", context)
+
 
 def root(request):
     title = DOMAIN_NAME
@@ -45,22 +53,30 @@ def root(request):
         #INSERT NEW JOB INTO DATABASE
         print('printing request.POST')
         #job = [posted_date, title, company, address, neighborhood, shift, description]
-        job = [ str(datetime.date.today()),
-                request.POST.get('title', ''),
-                request.POST.get('company', ''),
-                request.POST.get('address', ''),
-                # TODO: geocode to get neighborhood from an address
-                request.POST.get('neighborhood', ''),
-                request.POST.get('shift', ''),
-                request.POST.get('description', '')
-               ]
-        print(job)
-        insert_into_db(job)
+        job = models.Job(
+            title = request.POST.get('title', ''),
+            # TODO: error: this needs to get the Business() object
+            business = Business.objects.get(pk=request.POST.get('company', '')),
+            # TODO: probably error: this needs to get the Location() object
+            location = Location.objects.get(pk=request.POST.get('location', '')),
+            job_function = request.POST.get('job_function', ''),
+            employment_type = request.POST.get('employment_type', ''),
+            description = request.POST.get('description', ''),
+            skills = request.POST.get('skills', ''),
+            qualifications = request.POST.get('qualifications', ''),
+            instructions = request.POST.get('instructions', ''),
+            #TODO: add to form
+            poc = request.POST.get('poc', ''),
+            email = request.POST.get('email', ''),
+            phone = request.POST.get('phone', '')
+            )
+        job.save()
 
     # set default map
-    location = Location(neighborhood).get_coordinates()
+    location = MapLocation(neighborhood).get_coordinates()
 
-    jobs = Listings().retrieve_jobs().build_jobs()
+    # TODO: This should come from the Jobs model
+    jobs = models.Job.objects.all()
 
     context = {
         'title': title,
@@ -102,7 +118,7 @@ class Job(object):
         self.posted_date = job_data.get('postedDate')
         self.company = job_data.get('company')
         # this will be a Location() object
-        self.location = Location(job_data.get('location')).get_coordinates()
+        self.location = MapLocation(job_data.get('location')).get_coordinates()
         self.shift = job_data.get('shift')
         self.description = job_data.get('description')
         self.tags = job_data.get('tags')
@@ -122,13 +138,7 @@ class Listings(list):
         self.raw_data = None
 
     def retrieve_jobs(self):
-        query = """SELECT * FROM Jobs"""
-        conn = sqlite3.connect(self.db)
-        c = conn.cursor()
-        self.raw_data = retrieved = c.execute(query).fetchall()
-        conn.commit()
-        conn.close()
-        return self
+        return models.Job.objects.all()
 
     def convert_db_row_to_dict(self, db_data):
         dictionary = {
