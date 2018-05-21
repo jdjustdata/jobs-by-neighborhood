@@ -15,7 +15,7 @@ from ..app_filters import case_insensitive_criteria
 from localflavor.us.us_states import US_STATES
 from localflavor.us.models import USZipCodeField
 
-from ..business.models import Business
+from ..business.models import Business, Location
 
 from main.settings import BASE_DIR
 import re
