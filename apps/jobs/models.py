@@ -15,7 +15,7 @@ from ..app_filters import case_insensitive_criteria
 from localflavor.us.us_states import US_STATES
 from localflavor.us.models import USZipCodeField
 
-from ..business.models import Business
+from ..business.models import Business, Location
 
 from main.settings import BASE_DIR
 import re
@@ -118,7 +118,7 @@ class JobManager(models.Manager):
 class Job(models.Model):
     title = models.CharField(max_length=100)
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="Jobs")
-    location = models.CharField(max_length=500)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="JobLocation")
 
     job_function = models.CharField(max_length=100)
     employment_type = models.CharField(max_length=100)

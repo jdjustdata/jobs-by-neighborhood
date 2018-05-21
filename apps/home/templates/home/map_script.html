@@ -2,7 +2,7 @@
     <script type="text/javascript">
         var coordsList = [];
         {% for job in jobs %}
-        coordsList.push({{job.location.coordinates}});
+        coordsList.push([{{job.location.latitude}}, {{job.location.longitude}}]);
         {% endfor %}
 
         var mymap = L.map('mapid').setView({{ location.coordinates }}, 15);
