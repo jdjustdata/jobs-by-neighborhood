@@ -75,6 +75,10 @@ def root(request):
     # set default map
     location = MapLocation(neighborhood).get_coordinates()
 
+    #HOTFIX
+    fix_job = models.Job.objects.get(pk=1)
+    fix_job.location = Location.objects.get(pk=2)
+
     # TODO: This should come from the Jobs model
     jobs = models.Job.objects.all()
 
