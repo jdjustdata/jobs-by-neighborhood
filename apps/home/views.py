@@ -15,6 +15,7 @@ else:
 
 from ..geography.views import Location
 from ..jobs.views import Listings
+from ..jobs.models import Job
 
 
 def index(request):
@@ -25,7 +26,7 @@ def index(request):
     location = Location(neighborhood).get_coordinates()
 
     # jobs = Listings().retrieve_jobs().build_jobs()
-    jobs = []
+    jobs = Job.objects.all()
 
     context = {
         'title': title,

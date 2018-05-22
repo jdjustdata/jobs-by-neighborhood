@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from main.settings_deploy import DOMAIN_NAME
 import main.settings_environ as settings_environ
@@ -92,8 +92,26 @@ def update(request):
     pass
 
 
-def get_one(request):
-    pass
+def get_one(request, id):
+
+    title = DOMAIN_NAME
+    neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+
+    job = get_object_or_404(models.Job, pk=id)
+    # set default map
+    location = MapLocation(neighborhood).get_coordinates()
+    # reset map values using Job coords
+    location.coordinates = [float(job.location.latitude), float(job.location.longitude)]
+
+    context = {
+        'title': title,
+        'location': location,
+        'api_key': MAPBOX_KEY,
+        'job': job,
+        # map expects an iterable
+        'jobs': [job]
+    }
+    return render(request, "jobs/show.html", context)
 
 
 def get_all(request):
