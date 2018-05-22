@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+<div class="container fluid">
+    <h1 class="display-4 my-4">Jobs Index</h1>
+
+        <div class="row">
+          <div class="col">
+            <ul class="list-group">
+              <li class="list-group-item"><h2>{{ job.title }}</h2></li>
+              <li class="list-group-item"><h3>{{ job.business.name }}</h3></li>
+              <li class="list-group-item"><h3>{{ job.location.street }} <br/> {{ job.location.neighborhood }}</h3></li>
+              <li class="list-group-item"><p>{{ job.description }} </p></li>
+              <li class="list-group-item"><p>{{ job.skills }}</p></li>
+              <li class="list-group-item"><p>{{ job.qualifications }}</p></li>
+              <li class="list-group-item"><p>{{ job.instructions }}</p></li>
+              <li class="list-group-item"><p>{{ job.poc }}</p></li>
+            </ul>
+          </div>
+
+          <div class="col">
+            <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+                <label for="neighborhood">Neighborhood</label>
+                <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+                <input type="submit" value="Render Map">
+            </form>
+            <div class="jsMap" id="mapid" style="height:480px;width:600px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+	</div>
+</div>
+{% include 'home/map_script.html' %}
+{% endblock %}
