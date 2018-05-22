@@ -7,17 +7,17 @@
     <h1 class="display-4 my-4">Neighborhood Jobs</h1>
     <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
         <label for="neighborhood">Neighborhood</label>
-        <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
+        <input id="select-neighborhood" type="text" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
         <input type="submit" value="Render Map">
     </form>
-    <p>Neighborhood = {{ location.neighborhood }} </p>
-
         <div class="row">
           <div class="col">
             <div class="list-group">
               {% for job in jobs %}
-              <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
-              at {{job.company}} <br/> Shift {{job.shift}} <br/> {{job.location.neighborhood}}</button>
+              <a href="/jobs/{{ job.id }}">
+                <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
+                at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
+              </a>
               {% endfor %}
             </div>
           </div>
