@@ -15,8 +15,10 @@
           <div class="col">
             <div class="list-group">
               {% for job in jobs %}
-              <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
-              at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
+              <a href="/jobs/{{ job.id }}">
+                <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
+                at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
+              </a>
               {% endfor %}
             </div>
           </div>
