@@ -13,23 +13,6 @@
             accessToken: '{{ api_key }}'
         }).addTo(mymap);
         addPins();
-        //my favorite restaurant
-        // var marker = L.marker({{location.coordinates}}).addTo(mymap)
-            // .bindPopup('A test CSS3 popup.<br>{{location.neighborhood}}<br>Customizable.')
-            // .openPopup();
-        var geojsonFeature = {
-                "type": "Feature",
-                "properties": {
-                    "name": "Coors Field",
-                    "amenity": "Baseball Stadium",
-                    "popupContent": "This is where the Rockies play!"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": {{location.coordinates}}
-                }
-            };
-        L.geoJSON(geojsonFeature).addTo(map);
 
         function addPins() {
           for(var i = 0; i < coordsList.length; i++) {
