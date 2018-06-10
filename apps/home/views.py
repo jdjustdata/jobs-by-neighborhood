@@ -36,6 +36,16 @@ def index(request):
     }
     return render(request, "home/index.html", context)
 
+
+def search(request):
+    # retrieve query from the request
+    query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+    # process query and get relevant map data
+    location = Location(query).get_coordinates()
+    # return map data and update page
+    return location
+
+
 def test(request):
     context = {
         'access_token': MAPBOX_KEY
