@@ -20,4 +20,37 @@
           }
         }
     </script>
+    <script  type="text/javascript">
+    //Add event listeners for these two variables
+    $('#search-neighborhood').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!");  // sanity check
+      //run the /search/ route when renderMapButton is activated
+      var newCoordinates = retrieveCoordinates();
+      //update the map with the new coordinates
+      updateMapCoordinates(newCoordinates);
+    });
+
+    function retrieveCoordinates(){
+      console.log("retrieving coordinates...")
+      $.ajax({
+        url: "/home/search/",
+        type: "GET",
+        data: {query: $("#select-neighborhood").val()},
+
+        // handle a successful response
+        success: function(json){
+          console.log("success!");
+          console.log(json); //log the returned json to the console
+        },
+
+        //handle a failure
+        error: function(xhr, errmsg, err) {
+          console.log(xhr.status + ": " + xhr.responseText);
+        }
+      });
+
+    }
+
+    </script>
 </div>
