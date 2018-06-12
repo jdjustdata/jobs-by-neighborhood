@@ -34,7 +34,7 @@
     function retrieveCoordinates(){
       console.log("retrieving coordinates...")
       $.ajax({
-        url: "/home/search/",
+        url: $('#search-neighborhood')[0].action,
         type: "GET",
         data: {query: $("#select-neighborhood").val()},
 
