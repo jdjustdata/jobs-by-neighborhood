@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.http import HttpResponse
 
 import main.settings_environ as settings_environ
 from main.settings_deploy import DOMAIN_NAME
@@ -38,12 +39,13 @@ def index(request):
 
 
 def search(request):
-    # retrieve query from the request
-    query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
-    # process query and get relevant map data
-    location = Location(query).get_coordinates()
-    # return map data and update page
-    return location
+    # # retrieve query from the request
+    # query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+    # # process query and get relevant map data
+    # location = Location(query).get_coordinates()
+    # # return map data and update page
+    # return location.coordinates
+    return HttpResponse("This is the Search route")
 
 
 def test(request):
@@ -51,3 +53,7 @@ def test(request):
         'access_token': MAPBOX_KEY
     }
     return render(request, "home/test_map.html", context)
+
+
+def eggs(request):
+    return "Poop"
