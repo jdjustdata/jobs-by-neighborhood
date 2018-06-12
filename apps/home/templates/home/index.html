@@ -10,11 +10,12 @@
 
     </div>
     <div class="col">
-      <!-- <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get"> -->
+      <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+        {% csrf_token %}
           <label for="neighborhood">Neighborhood</label>
           <input id="select-neighborhood" type="text" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
-          <input type="submit" value="Render Map">
-      <!-- </form> -->
+          <input type="submit" id="renderMapButton" value="Render Map">
+      </form>
     </div>
 
   </div>
