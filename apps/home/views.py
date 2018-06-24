@@ -39,13 +39,13 @@ def index(request):
 
 
 def search(request):
-    # # retrieve query from the request
-    # query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
-    # # process query and get relevant map data
-    # location = Location(query).get_coordinates()
-    # # return map data and update page
-    # return location.coordinates
-    return HttpResponse("This is the Search route")
+    # retrieve query from the request
+    query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+    # process query and get relevant map data
+    location = Location(query).get_coordinates()
+    # return map data and update page
+    return HttpResponse(str(location.coordinates))
+    #return HttpResponse("This is the Search route")
 
 
 def test(request):
