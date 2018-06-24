@@ -33,7 +33,8 @@
     });
 
     function retrieveCoordinates(){
-      console.log("retrieving coordinates...")
+      var coordinates = "";
+      console.log("retrieving coordinates...");
       $.ajax({
         url: $('#search-neighborhood')[0].action,
         type: "GET",
@@ -42,7 +43,8 @@
         // handle a successful response
         success: function(json){
           console.log("success!");
-          console.log(json); //log the returned json to the console
+          coordinates = json;
+          console.log(coordinates); //log the returned json to the console
         },
 
         //handle a failure
@@ -50,7 +52,7 @@
           console.log(xhr.status + ": " + xhr.responseText);
         }
       });
-
+      return coordinates;
     }
 
     </script>

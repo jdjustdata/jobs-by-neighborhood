@@ -40,9 +40,10 @@ def index(request):
 
 def search(request):
     # retrieve query from the request
-    query = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
+    query = request.GET.get('neighborhood', 'Logan Square').replace('+', ' ')
     # process query and get relevant map data
     location = Location(query).get_coordinates()
+    print("query =", query, "coordinates =", location.coordinates)
     # return map data and update page
     return HttpResponse(str(location.coordinates))
     #return HttpResponse("This is the Search route")
