@@ -20,15 +20,16 @@
           }
         }
     </script>
-    <script  type="text/javascript">
+    <script type="text/javascript">
     //Add event listeners for these two variables
     $('#search-neighborhood').on('submit', function(event){
-      event.preventDefault();
       console.log("form submitted!");  // sanity check
       //run the /search/ route when renderMapButton is activated
       var newCoordinates = retrieveCoordinates();
+      event.preventDefault();
       //update the map with the new coordinates
-      updateMapCoordinates(newCoordinates);
+      //updateMapCoordinates(newCoordinates);
+      return false;
     });
 
     function retrieveCoordinates(){
