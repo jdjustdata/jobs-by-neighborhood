@@ -28,7 +28,7 @@
       var newCoordinates = retrieveCoordinates();
       event.preventDefault();
       //update the map with the new coordinates
-      //updateMapCoordinates(newCoordinates);
+      updateMapCoordinates(newCoordinates);
       return false;
     });
 
@@ -55,5 +55,9 @@
       return coordinates;
     }
 
+    function updateMapCoordinates(newCoordinates){
+      mymap.setView(newCoordinates, 15);
+      return true;
+    }
     </script>
 </div>
