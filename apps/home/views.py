@@ -44,11 +44,10 @@ def search(request):
     # process query and get relevant map data
     location = Location(query).get_coordinates()
     print("query =", query, "coordinates =", location.coordinates)
-    # return map data and update page
+    # return map data
     return JsonResponse({"latitude": location.coordinates[0],
                          "longitude":location.coordinates[1]
                         })
-    #return HttpResponse("This is the Search route")
 
 
 def test(request):
