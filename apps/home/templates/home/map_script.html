@@ -13,29 +13,47 @@
             accessToken: '{{ api_key }}'
         }).addTo(mymap);
         addPins();
-        //my favorite restaurant
-        // var marker = L.marker({{location.coordinates}}).addTo(mymap)
-            // .bindPopup('A test CSS3 popup.<br>{{location.neighborhood}}<br>Customizable.')
-            // .openPopup();
-        var geojsonFeature = {
-                "type": "Feature",
-                "properties": {
-                    "name": "Coors Field",
-                    "amenity": "Baseball Stadium",
-                    "popupContent": "This is where the Rockies play!"
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": {{location.coordinates}}
-                }
-            };
-        L.geoJSON(geojsonFeature).addTo(map);
 
         function addPins() {
           for(var i = 0; i < coordsList.length; i++) {
             L.marker(coordsList[i]).addTo(mymap);
           }
-
         }
+    </script>
+
+
+    <script type="text/javascript">
+    $('#search-neighborhood').on('submit', function(event){
+      event.preventDefault();
+      //run the /search/ route when renderMapButton is activated
+      var newCoordinates = retrieveCoordinates(updateMapCoordinates);
+      return false;
+    });
+
+    function retrieveCoordinates(callback){
+      var coordinates = "";
+      $.ajax({
+        url: $('#search-neighborhood')[0].action,
+        type: "GET",
+        data: {query: $("#select-neighborhood").val()},
+
+        // handle a successful response
+        success: function(json){
+          coordinates = [json.latitude, json.longitude];
+          callback(coordinates);
+        },
+
+        //handle a failure
+        error: function(xhr, errmsg, err) {
+          console.log(xhr.status + ": " + xhr.responseText);
+        }
+      });
+      return coordinates;
+    }
+
+    function updateMapCoordinates(latLongArray){
+      mymap.setView(latLongArray, 15);
+      return true;
+    }
     </script>
 </div>

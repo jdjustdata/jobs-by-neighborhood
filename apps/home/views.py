@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.http import HttpResponse, JsonResponse
 
 import main.settings_environ as settings_environ
 from main.settings_deploy import DOMAIN_NAME
@@ -36,8 +37,25 @@ def index(request):
     }
     return render(request, "home/index.html", context)
 
+
+def search(request):
+    # retrieve query from the request
+    query = request.GET.get('query', 'Logan Square').replace('+', ' ')
+    # process query and get relevant map data
+    location = Location(query).get_coordinates()
+    print("query =", query, "coordinates =", location.coordinates)
+    # return map data
+    return JsonResponse({"latitude": location.coordinates[0],
+                         "longitude":location.coordinates[1]
+                        })
+
+
 def test(request):
     context = {
         'access_token': MAPBOX_KEY
     }
     return render(request, "home/test_map.html", context)
+
+
+def eggs(request):
+    return "Poop"
