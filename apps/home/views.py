@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 import main.settings_environ as settings_environ
 from main.settings_deploy import DOMAIN_NAME
@@ -40,12 +40,14 @@ def index(request):
 
 def search(request):
     # retrieve query from the request
-    query = request.GET.get('neighborhood', 'Logan Square').replace('+', ' ')
+    query = request.GET.get('query', 'Logan Square').replace('+', ' ')
     # process query and get relevant map data
     location = Location(query).get_coordinates()
     print("query =", query, "coordinates =", location.coordinates)
     # return map data and update page
-    return HttpResponse(str(location.coordinates))
+    return JsonResponse({"latitude": location.coordinates[0],
+                         "longitude":location.coordinates[1]
+                        })
     #return HttpResponse("This is the Search route")
 
 

@@ -20,21 +20,26 @@
           }
         }
     </script>
+
+
     <script type="text/javascript">
-    //Add event listeners for these two variables
     $('#search-neighborhood').on('submit', function(event){
+      event.preventDefault();
       console.log("form submitted!");  // sanity check
       //run the /search/ route when renderMapButton is activated
-      var newCoordinates = retrieveCoordinates();
-      event.preventDefault();
+      var newCoordinates = retrieveCoordinates(updateMapCoordinates);
+      //var newCoordinates = [36.1251958,-115.3150859];
+      console.log("var newCoordinates is " + newCoordinates);
       //update the map with the new coordinates
-      updateMapCoordinates(newCoordinates);
+      //updateMapCoordinates(newCoordinates);
       return false;
     });
 
-    function retrieveCoordinates(){
+    function retrieveCoordinates(callback){
       var coordinates = "";
-      console.log("retrieving coordinates...");
+      console.log("in retrieveCoordinates");
+      console.log("ajax url = " + $('#search-neighborhood')[0].action);
+      console.log("ajax data = " + $("#select-neighborhood").val());
       $.ajax({
         url: $('#search-neighborhood')[0].action,
         type: "GET",
@@ -42,9 +47,15 @@
 
         // handle a successful response
         success: function(json){
-          console.log("success!");
-          coordinates = json;
+          console.log("successful ajax response");
+          console.log("Json response = " + json);
+          console.log("json length = " + json.length);
+
+          coordinates = [json.latitude, json.longitude];
+          //console.log("In retrieveCoordinates, setting coords to [36.1251958,-115.3150859]");
+          //coordinates = [36.1251958,-115.3150859];
           console.log(coordinates); //log the returned json to the console
+          callback(coordinates);
         },
 
         //handle a failure
@@ -55,8 +66,8 @@
       return coordinates;
     }
 
-    function updateMapCoordinates(newCoordinates){
-      mymap.setView(newCoordinates, 15);
+    function updateMapCoordinates(latLongArray){
+      mymap.setView(latLongArray, 15);
       return true;
     }
     </script>
