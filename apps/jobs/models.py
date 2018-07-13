@@ -115,6 +115,11 @@ class JobManager(models.Manager):
         # return
 
 
+class JobFunction(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=2000)
+
+
 class Job(models.Model):
     title = models.CharField(max_length=100)
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="Jobs")
