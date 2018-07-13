@@ -29,9 +29,10 @@ def create(request):
     location = MapLocation(neighborhood).get_coordinates()
     # TODO: This object must be refactored in map_script.html to work properly
     jobs = models.Job.objects.get_all()
-
+    job_functions = models.JobFunction.objects.all()
     businesses = BusinessManager().get_all()
     business_locations = Location.objects.all()
+
 
     context = {
         'title': title,
@@ -39,6 +40,7 @@ def create(request):
         'api_key': MAPBOX_KEY,
         'businesses': businesses,
         'business_locations': business_locations,
+        'job_functions': job_functions,
         'jobs': jobs
     }
 
@@ -59,7 +61,7 @@ def root(request):
             business = Business.objects.get(pk=request.POST.get('company', '')),
             # TODO: probably error: this needs to get the Location() object
             location = Location.objects.get(pk=request.POST.get('location', '')),
-            job_function = request.POST.get('job_function', ''),
+            job_function = models.JobFunction.objects.get(pk=request.POST.get('job_function', '')),
             employment_type = request.POST.get('employment_type', ''),
             description = request.POST.get('description', ''),
             skills = request.POST.get('skills', ''),
