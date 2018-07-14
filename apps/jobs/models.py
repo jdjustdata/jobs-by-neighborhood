@@ -116,6 +116,7 @@ class JobManager(models.Manager):
 
 
 class JobFunction(models.Model):
+    """rollback: Standardize job function values"""
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=2000)
 
