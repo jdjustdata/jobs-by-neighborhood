@@ -116,9 +116,7 @@ class JobManager(models.Manager):
 
 
 class JobFunction(models.Model):
-    """Model to standardize the JobFunction values from the /jobs/create/ form,
-    in case we need to add/remove some in the future.
-    """
+    """rollback: Standardize job function values"""
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=2000)
 
