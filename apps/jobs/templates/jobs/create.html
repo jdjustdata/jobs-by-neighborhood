@@ -38,8 +38,23 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
+                  <label for="salary_minimum">Salary Minimum</label>
+                  <input type="number" class="form-control" name="salary_minimum" placeholder="8.25">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="salary_maximum">Salary Maximum</label>
+                  <input type="number" class="form-control" name="salary_maximum" placeholder="20.00">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
                   <label for="job_function">Job Function</label>
-                  <input type="text" class="form-control" name="job_function" placeholder="Job Function">
+                  <select class="form-control" name="job_function">
+                    <option value="">Select a Job Function</option>
+                    {% for jf in job_functions %}
+                    <option value="{{ jf.id }}">{{ jf.title }}</option>
+                    {% endfor %}
+                  </select>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="employment_type">Employment Type</label>
