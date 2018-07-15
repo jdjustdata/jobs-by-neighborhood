@@ -12,9 +12,12 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='job',
-            name='job_function',
-            field=models.CharField(max_length=100),
+        migrations.CreateModel(
+            name='JobFunction',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=100)),
+                ('description', models.CharField(max_length=2000)),
+            ],
         ),
     ]
