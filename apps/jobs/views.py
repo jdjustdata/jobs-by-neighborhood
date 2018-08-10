@@ -61,7 +61,10 @@ def root(request):
             business = Business.objects.get(pk=request.POST.get('company', '')),
             # TODO: probably error: this needs to get the Location() object
             location = Location.objects.get(pk=request.POST.get('location', '')),
-            job_function = models.JobFunction.objects.get(pk=request.POST.get('job_function', '')),
+            # QUICK FIX: error in models and db with job_function. Storing as
+            # QUICK FIX: a number for now
+            # job_function = models.JobFunction.objects.get(pk=request.POST.get('job_function', '')),
+            job_function = request.POST.get('job_function', ''),
             employment_type = request.POST.get('employment_type', ''),
             description = request.POST.get('description', ''),
             skills = request.POST.get('skills', ''),
