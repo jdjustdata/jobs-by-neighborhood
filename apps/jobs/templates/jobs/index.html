@@ -5,32 +5,36 @@
 
 <div class="container">
     <h1 class="display-4 my-4">Jobs Index</h1>
-    <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
-        <label for="neighborhood">Neighborhood</label>
-        <input id="select-neighborhood" type="text" name="neighborhood" placeholder="Your Neighborhood" value="">
-        <input type="submit" value="Render Map">
-    </form>
+    <div class="row">
+      <div class="col">
 
-        <div class="row">
-          <div class="col">
-            <div class="list-group">
-              {% for job in jobs %}
-              <a href="/jobs/{{ job.id }}">
-                <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
-                at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
-              </a>
-              {% endfor %}
-            </div>
-          </div>
+      </div>
+      <div class="col">
+        <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+          <label for="neighborhood">Neighborhood</label>
+          <input id="select-neighborhood" type="text" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
+          <input type="submit" id="renderMapButton" value="Render Map">
+        </form>
+      </div>
+    </div>
 
-          <div class="col">
-            <div class="jsMap" id="mapid" style="height:480px;width:600px;">
-            </div>
-          </div>
+    <div class="row">
+      <div class="col">
+        <div class="list-group">
+          {% for job in jobs %}
+          <a href="/jobs/{{ job.id }}">
+            <button type="button" class="list-group-item list-group-item-action">{{ job.title }}
+            at {{job.business.name}} <br/> {{job.location.neighborhood}}</button>
+          </a>
+          {% endfor %}
         </div>
       </div>
 
-	</div>
+      <div class="col">
+        <div class="jsMap" id="mapid" style="height:480px;width:600px;">
+        </div>
+      </div>
+    </div>
 </div>
 {% include 'home/map_script.html' %}
 {% endblock %}
