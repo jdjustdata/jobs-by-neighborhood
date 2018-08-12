@@ -5,15 +5,14 @@
 
 <div class="container">
     <h1 class="display-4 my-4">Jobs Index</h1>
-    <div class="row">
+    <div class="row mb-2">
       <div class="col">
-
       </div>
       <div class="col">
-        <form id="search-neighborhood" class="ui form" action="{% url 'home:search_loc' %}" method="get">
+        <form id="search-neighborhood" class="form-inline" action="{% url 'home:search_loc' %}" method="get">
           <label for="neighborhood">Neighborhood</label>
-          <input id="select-neighborhood" type="text" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
-          <input type="submit" id="renderMapButton" value="Render Map">
+          <input id="select-neighborhood" type="text" class="form-control" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
+          <input type="submit" class="btn btn-primary" id="renderMapButton" value="Render Map">
         </form>
       </div>
     </div>
