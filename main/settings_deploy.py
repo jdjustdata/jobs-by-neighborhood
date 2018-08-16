@@ -1,11 +1,11 @@
 """
 Django settings for a deployed project
 
-Deployed settings are specific to the server 
+Deployed settings are specific to the server
 or production environment and should protect
 sensitive information and web vulnerabilities.
 
-These settings will be publicly available on a 
+These settings will be publicly available on a
 Git Repository, and should not include any sensitive
 keys or information.
 
@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 # Domain Name used to display on template views
-DOMAIN_NAME = "Jobs By Neighborhood"
+DOMAIN_NAME = "liveliHOOD"
 DOMAIN_ACRONYM = "JBN"
 DOMAIN_URL = ""
 
