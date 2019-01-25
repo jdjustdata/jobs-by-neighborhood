@@ -23,6 +23,8 @@ In this way, sensitive keys and password information
 will never be submitted to a public Git Repository
 """
 
+import os
+import dj_database_url
 from settings import *
 from settings_sensitive import *
 
@@ -39,12 +41,15 @@ ALLOWED_HOSTS = []
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Database
+# Postgres Database Settings
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+DATABASE_URL = ''
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'jobs.db'),
-    }
+    'default': dj_database_url.config(
+        default=DATABASE_URL
+    )
 }
+
+# Change 'default' database configuration with $DATABASE_URL.
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500))

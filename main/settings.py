@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.geography',
     'apps.jobs',
+    'apps.pageresources',
 ]
 
 MIDDLEWARE = [
