@@ -59,7 +59,7 @@
           </div>
 
           <div class="col">
-            <form id="search-neighborhood" class="form-inline" action="{% url 'home:search_loc' %}" method="get">
+            <form id="search-neighborhood" class="form-inline" action="{% url 'home:search_loc'  %}" method="get">
                 <label for="neighborhood">Neighborhood</label>
                 <input id="select-neighborhood" type="text" class="form-control" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
                 <input type="submit" class="btn btn-primary" id="renderMapButton" value="Render Map">

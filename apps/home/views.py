@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
+from django.utils.translation import ugettext_lazy as _
 
 import main.settings_environ as settings_environ
 from main.settings_deploy import DOMAIN_NAME
@@ -17,6 +18,11 @@ else:
 from ..geography.views import Location
 from ..jobs.views import Listings
 from ..jobs.models import Job
+from main.settings import LANGUAGE_CODE as DEFAULT_LANGUAGE
+
+
+def redirect_language(request):
+    return redirect('/' + DEFAULT_LANGUAGE + '/')
 
 
 def index(request):

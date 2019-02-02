@@ -46,7 +46,6 @@ MEDIA_URL = MEDIA_ROOT + '/assets/'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL')

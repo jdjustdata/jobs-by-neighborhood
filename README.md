@@ -123,3 +123,38 @@ To deploy this project to a production server, keep in mind the following:
   * Leafletjs - http://leafletjs.com/examples/quick-start/
 
   * Google Maps - https://developers.google.com/maps/documentation/javascript/
+
+## translation
+
+This project uses Django's internationalization i18n translation hooks. 
+
+Reference Django's documentation for further details: https://docs.djangoproject.com/en/2.1/topics/i18n/translation/
+
+TODO: Finish documentation
+
+  * To evaluate all **.html**, **.txt**, and **.py** files for translatable text (identified by the *gettext* library method), 
+  run this command: 
+     
+    ```django-admin makemessages -l es```
+    
+    ** If you are attempting to run this command on a mac, you may get a message informing you errors occurred while attempting to run msguniq. If you get this message, you must install gettext with Homebrew:
+    
+    ```brew install gettext```
+    
+    and then add the location where gettext installed to a PATH variable:
+    
+    ```PATH="/usr/local/opt/gettext/bin:$PATH"```
+    
+    Attempt to rereun the makemessages command. If you are still getting an error, you may need to run the getmessages command with python manage.py instead:
+    
+    ```python manage.py makemessages -l es```
+  
+  * This command will generate or update **.po** message files in the locale folder (*/www/locale/es*, where *es* 
+  designates the language code).
+  
+  * Translators will update the **.po** files with relevant translations in the '*msgstr*' key.  
+  
+  * After you create and update **.po** files, run the following command to compile new messages for the gettext library:  
+    
+    ```django-admin compilemessages```
+ 

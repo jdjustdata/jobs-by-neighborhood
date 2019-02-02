@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,17 +37,20 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.geography',
     'apps.jobs',
+    'apps.pageresources',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'apps.languages.middleware.LanguageProcessRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -94,11 +98,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'www', 'locale')
+]
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish'))
+)
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'America/Chicago'
-USE_I18N = True
-USE_L10N = True
+USE_I18N = True # support localization
+USE_L10N = True # dates, numbers, and calendars according to the current locale
 USE_TZ = True
 
 # Redefine the login views

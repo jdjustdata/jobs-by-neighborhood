@@ -126,8 +126,13 @@ class Job(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE, related_name="Jobs")
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="JobLocation")
     #Comment out Foreign key due to db errors
-    job_function = models.CharField(max_length=100)
-    #job_function = models.ForeignKey(JobFunction, on_delete=models.CASCADE, related_name="JobFunction")
+    #job_function = models.CharField(max_length=100)
+    job_function = models.ForeignKey(
+        JobFunction,
+        on_delete=models.CASCADE,
+        related_name="JobFunction",
+        db_column="job_function"
+    )
     employment_type = models.CharField(max_length=100)
 
     description = models.TextField(max_length=500)
