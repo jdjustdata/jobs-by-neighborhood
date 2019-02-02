@@ -1,0 +1,10 @@
+{% load i18n %}
+<div class="row full-width-row mb-2 justify-content-end">
+    <form id="search-neighborhood" class="form-inline" action="{% url 'home:search_loc' %}" method="get">
+        <div class="form-group row-no-extend">
+            <label class="col-form-label col" for="neighborhood">{% trans "Neighborhood" %}</label>
+            <input id="select-neighborhood" type="text" class="form-control col" name="neighborhood" placeholder="{{ location.neighborhood }}" value="">
+            <input type="submit" class="btn btn-primary col" id="renderMapButton" value={% trans "Search" %}>
+        </div>
+    </form>
+</div>
