@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="list-group">
+    {% for job in jobs %}
+        <a href="{% url 'jobs:get_one' job.id %}" style="text-decoration:none;">
+            <button type="button" class="list-group-item list-group-item-action">
+                <div class="text-justify">
+                  <span class="inline">
+                    <h5 class="mb-1">
+                      <span class="text-job-title">{{ job.title }}</span>
+                      <span>{% trans " at " %}</span>
+                      <span class="text-employer-name">{{job.business.name}}</span>
+                    </h5>
+                  </span>
+                    <h6>{{job.location.neighborhood}}</h6>
+                </div>
+            </button>
+        </a>
+    {% endfor %}
+</div>

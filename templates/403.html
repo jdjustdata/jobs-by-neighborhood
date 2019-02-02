@@ -1,10 +1,12 @@
 {% extends 'base/base.html' %}
-{% block title %}Permission Required{% endblock %}
+{% block title %}{% trans "Permission Required" %}{% endblock %}
 {% block body %}
+{% load i18n %}
+
 <body>
     <div class="container p-5">
-        <h1>Forbidden</h1>
-        <p>Sorry, but your user account does not have permission to perform the requested action.</p>
+        <h1>{% trans "Forbidden" %}</h1>
+        <p>{% trans "Sorry, but your user account does not have permission to perform the requested action." %}</p>
     </div>
 </body>
 {% endblock %}

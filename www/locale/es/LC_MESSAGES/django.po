@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-02 17:27-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/geography/templates/geography/search_bar.html:5
+msgid "Neighborhood"
+msgstr ""
+
+#: apps/geography/templates/geography/search_bar.html:7
+#, fuzzy
+#| msgid "My Job Search"
+msgid "Search"
+msgstr "Mi Búsqueda de Empleo"
+
+#: apps/home/templates/home/index.html:6 templates/base/footer.html:4
+msgid "Neighborhood Jobs"
+msgstr ""
+
+#: apps/jobs/templates/jobs/index.html:6
+msgid "Jobs"
+msgstr ""
+
+#: apps/jobs/templates/jobs/jobs_list.html:10
+msgid " at "
+msgstr ""
+
+#: main/settings.py:105
+msgid "English"
+msgstr "Inglés"
+
+#: main/settings.py:106
+msgid "Spanish"
+msgstr "Español"
+
+#: templates/403.html:2
+msgid "Permission Required"
+msgstr ""
+
+#: templates/403.html:8
+msgid "Forbidden"
+msgstr ""
+
+#: templates/403.html:9
+msgid ""
+"Sorry, but your user account does not have permission to perform the "
+"requested action."
+msgstr ""
+
+#: templates/404.html:2
+msgid "Page Not Found"
+msgstr ""
+
+#: templates/404.html:7
+msgid "Page not found"
+msgstr ""
+
+#: templates/404.html:8
+msgid "Sorry, but the requested page could not be found."
+msgstr ""
+
+#: templates/500.html:2
+msgid "Page Unavailable"
+msgstr ""
+
+#: templates/500.html:7
+msgid "Page unavailable"
+msgstr ""
+
+#: templates/500.html:8
+msgid "Sorry, but the requested page,"
+msgstr ""
+
+#: templates/500.html:11
+msgid ", is unavailable due to a server hiccup."
+msgstr ""
+
+#: templates/500.html:13
+msgid "The server administrator has been notified, so check back later."
+msgstr ""
+
+#: templates/base/navbar.html:4
+msgid "liveliHOOD"
+msgstr "traBARRIO"
+
+#: templates/base/navbar.html:14
+msgid "Employers"
+msgstr "Empleadores"
+
+#: templates/base/navbar.html:17
+msgid "Employer Login"
+msgstr ""
+
+#: templates/base/navbar.html:18
+msgid "Add New Business"
+msgstr "Nuevo Negocio"
+
+#: templates/base/navbar.html:19
+msgid "Post New Job"
+msgstr "Nuevo Trabajo"
+
+#: templates/base/navbar.html:20
+msgid "View All Businesses"
+msgstr "Ver Todas Las Empresas"
+
+#: templates/base/navbar.html:26
+msgid "My Job Search"
+msgstr "Mi Búsqueda de Empleo"
+
+#: templates/base/navbar.html:29
+msgid "Job Search Login"
+msgstr ""
+
+#: templates/base/navbar.html:30
+msgid "View All Jobs"
+msgstr ""
+
+#: templates/base/navbar.html:38
+msgid "Languages"
+msgstr "Idiomas"
+
+#: templates/base/navbar.html:51
+msgid "About"
+msgstr ""
+
+#: templates/base/navbar.html:56
+msgid "Register"
+msgstr ""
+
+#: templates/base/navbar.html:59
+msgid "Login"
+msgstr ""
+
+#: templates/base/navbar.html:63
+msgid "Logout"
+msgstr ""
+
+#~ msgid "Thank you for visiting our site!"
+#~ msgstr "¡Gracias por visitar nuestro sitio Web!"
+
+#~ msgid "Hello"
+#~ msgstr "Español"

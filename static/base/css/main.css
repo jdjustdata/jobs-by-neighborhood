@@ -10,10 +10,33 @@
     margin-right: 0;
 }
 
+.row-no-extend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.full-width-row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.nav-item.dropdown {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
 .phone {
     display: inline-block !important;
     width: auto !important;
 }
+
 .checkbox {
     width: auto !important;
     box-shadow: none !important;
