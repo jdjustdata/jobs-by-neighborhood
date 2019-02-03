@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'jobsbyneighborhood.herokuapp.com',
+    'livelihoodjobs.org'
 ]
 
 # Domain Name used to display on template views
