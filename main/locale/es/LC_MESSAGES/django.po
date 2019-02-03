@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 17:27-0600\n"
+"POT-Creation-Date: 2019-02-02 23:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,11 +40,11 @@ msgstr ""
 msgid " at "
 msgstr ""
 
-#: main/settings.py:105
+#: main/settings.py:106
 msgid "English"
 msgstr "Inglés"
 
-#: main/settings.py:106
+#: main/settings.py:107
 msgid "Spanish"
 msgstr "Español"
 
