@@ -99,7 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'www', 'locale')
+    os.path.join(PROJECT_DIR, 'locale'),
+    '/locale/'
 ]
 LANGUAGES = (
     ('en', _('English')),
