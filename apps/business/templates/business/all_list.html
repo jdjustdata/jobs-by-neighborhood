@@ -1,17 +1,18 @@
 {% extends 'base/base.html' %}
 {% block title %}{{title}}{% endblock %}
 {% block body %}
+{% load i18n %}
 
 <div class="container">
-    <h1 class="my-4">Registered Businesses</h1>
+    <h1 class="my-4">{% trans "Registered Businesses" %}</h1>
     <table class="table table-striped">
         <thead class="text-center">
-            <th>Name</th>
-            <th>Industry</th>
-            <th>Website</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Locations</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Industry" %}</th>
+            <th>{% trans "Website" %}</th>
+            <th>{% trans "Phone" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Locations" %}</th>
         </thead>
         {% for b in businesses %}
         <tr>
@@ -24,7 +25,7 @@
                     {{b.status}}
                 </div>
                 <div class="col-sm-12">
-                    <small>Created by {{b.created_by}}</small>
+                    <small>{% trans "Created by " %}{{b.created_by}}</small>
                 </div>
                 <div class="col-sm-12">
                     <small>{{b.created_at}}</small>
@@ -39,7 +40,7 @@
                     {% endfor %}
                 {% endif %}
                 <div class="col-sm-12">
-                    <small><u><a href="{% url 'business:add_location' b.id %}">Add</a></u></small>
+                    <small><u><a href="{% url 'business:add_location' b.id %}">{% trans "Add" %}</a></u></small>
                 </div>
             </td>
         </tr>

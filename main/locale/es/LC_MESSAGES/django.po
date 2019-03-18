@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-02 23:29-0600\n"
+"POT-Creation-Date: 2019-02-20 13:14-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/business/forms.py:17
+msgid "Name of your business"
+msgstr ""
+
+#: apps/business/forms.py:18
+msgid "What is the primary industry for your business?"
+msgstr ""
+
+#: apps/business/forms.py:19
+msgid ""
+"Businesses with website and contact information are more likely to get "
+"interested applicants."
+msgstr ""
+
+#: apps/business/forms.py:21
+msgid "Primary Contact"
+msgstr ""
+
+#: apps/business/forms.py:22
+msgid "Role (Contact)"
+msgstr ""
+
+#: apps/business/forms.py:23
+msgid ""
+"Who is the primary person that should be contacted for job verification?"
+msgstr ""
+
+#: apps/business/forms.py:24
+msgid "What is this person's role?"
+msgstr ""
+
+#: apps/business/forms.py:39
+msgid "email@domain.com"
+msgstr ""
+
+#: apps/business/forms.py:40
+msgid "http://www.webaddress.com"
+msgstr ""
+
+#: apps/business/forms.py:42
+msgid "E.g., Manager, Human Resources Manager"
+msgstr ""
+
+#: apps/business/forms.py:50
+msgid "If your business has multiple locations, please name this location."
+msgstr ""
+
+#: apps/business/forms.py:51
+msgid "Primary Location"
+msgstr ""
+
+#: apps/business/forms.py:52
+msgid "Is this the primary (default) location for your business?"
+msgstr ""
+
+#: apps/business/forms.py:53
+msgid "Does this location have a unique phone number?"
+msgstr ""
+
+#: apps/business/models.py:37
+msgid "Phone number must be entered in the format: '999-999-9999'."
+msgstr ""
+
+#: apps/business/models.py:40
+msgid "Submitted"
+msgstr ""
+
+#: apps/business/models.py:41
+msgid "Under Review"
+msgstr ""
+
+#: apps/business/models.py:42
+msgid "Approved"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:7
+#, fuzzy
+#| msgid "View All Businesses"
+msgid "Registered Businesses"
+msgstr "Ver Todas Las Empresas"
+
+#: apps/business/templates/business/all_list.html:10
+msgid "Name"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:11
+msgid "Industry"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:12
+msgid "Website"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:13
+msgid "Phone"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:14
+msgid "Status"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:15
+msgid "Locations"
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:28
+msgid "Created by "
+msgstr ""
+
+#: apps/business/templates/business/all_list.html:43
+msgid "Add"
+msgstr ""
+
+#: apps/business/templates/business/create.html:7
+#, fuzzy
+#| msgid "Add New Business"
+msgid "Create a New Business"
+msgstr "Nuevo Negocio"
 
 #: apps/geography/templates/geography/search_bar.html:5
 msgid "Neighborhood"

@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator, EmailValidator, URLValidator
-from main.settings_deploy import DOMAIN_NAME
-from datetime import date, datetime, timedelta
+from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
 
@@ -19,7 +16,6 @@ from localflavor.us.us_states import US_STATES
 from localflavor.us.models import USZipCodeField
 
 from main.settings import BASE_DIR
-import re
 import os
 import json
 
@@ -33,14 +29,15 @@ INDUSTRY_INDEX_FILE = os.path.join(BASE_DIR, 'apps', 'business', 'industries.py'
 
 PHONE_REGEX = RegexValidator(
     regex=r'^\d{3}-\d{3}-\d{4}(\sext.\d{1,5})?$',
-    message="Phone number must be entered in the format: '999-999-9999'.")
+    message=_("Phone number must be entered in the format: '999-999-9999'."))
 
 STATUS_CODES = [
-    ('submitted', 'Submitted'),
-    ('review', 'Under Review'),
-    ('approved', 'Approved')
+    ('submitted', _('Submitted')),
+    ('review', _('Under Review')),
+    ('approved', _('Approved'))
 ]
 
+# TODO: Simplify the industry list -- perhaps, adopt a list of categories used by Google Places
 def get_industry_choices(key_field=INDUSTRY_KEY_FIELD):
     # Return a tuple of field choices from a json file of industry categories
     # Import NAICS Industry categories from US Bureau of Labor Statistics JSON data
@@ -141,59 +138,82 @@ class BusinessManager(models.Manager):
 
 
 class Business(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        verbose_name=_("Business"),
+        help_text=_("Name of your business"),
+        max_length=100
+    )
     industry = models.CharField(
+        verbose_name=_("Industry Category"),
+        help_text=_("What is the primary industry for your business?"),
         max_length=2,
         default="",
         choices=get_industry_choices(),
         validators=[
             RegexValidator(
                 regex='^[0-9]{2}$',
-                message='Please select an industry from the list.'
+                message=_('Please select an industry from the list.')
             )
         ]
     )
     subindustry = models.CharField(
+        verbose_name=_("Industry Type"),
         max_length=3,
         default="",
         blank=True,
         choices=get_industry_subchoices('72')
     )
     website = models.CharField(
+        verbose_name=_("Website"),
+        help_text=_("Businesses with website and contact information are more likely to get interested applicants."),
         max_length=100,
         blank=True,
         validators=[URLValidator()]
     )
     email = models.EmailField(
+        verbose_name=_("Email"),
         max_length=100,
         blank=True,
         validators=[EmailValidator()]
     )
     phone = models.CharField(
+        verbose_name=_("Phone"),
         max_length=20,
         blank=True,
         validators=[PHONE_REGEX]
     )
     primary_poc = models.CharField(
+        verbose_name=_("Primary Contact"),
+        help_text=_("Who is the primary person that should be contacted for job verification?"),
         max_length=50,
         blank=True
     )
     poc_role = models.CharField(
+        verbose_name=_("Role (Contact)"),
+        help_text=_("What is this person's role?"),
         max_length=30,
         blank=True
     )
     created_by = models.ForeignKey(
         User,
+        verbose_name=_("Created by"),
         on_delete=models.PROTECT,
         related_name="businesses_created"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        verbose_name=_("Date Created"),
+        auto_now_add=True
+    )
     status = models.CharField(
+        verbose_name=_("Status"),
         max_length=10,
-        default="submitted",
+        default=STATUS_CODES[0],
         choices=STATUS_CODES
     )
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(
+        verbose_name=_("Date Updated"),
+        auto_now=True
+    )
     objects = BusinessManager()
 
 
@@ -204,48 +224,65 @@ class LocationManager(models.Manager):
 
 class Location(models.Model):
     name = models.CharField(
+        verbose_name=_("Location"),
+        help_text=_("If your business has multiple locations, please name this location."),
         max_length=50,
-        default="Primary"
+        default=_("Primary")
     )
     business = models.ForeignKey(
         Business,
+        verbose_name=_("Business"),
         on_delete=models.CASCADE,
-        related_name="locations")
-    is_primary = models.BooleanField(default=True)
+        related_name="locations"
+    )
+    is_primary = models.BooleanField(
+        verbose_name=_("Primary Location"),
+        help_text=_("Is this the primary (default) location for your business?"),
+        default=True
+    )
     street = models.CharField(
+        verbose_name=_("Street Address"),
         max_length=50,
         default="",
         blank=True,
         null=True
     )
     city = models.CharField(
+        verbose_name=_("City"),
         max_length=50,
         default=""
     )
     state = models.CharField(
+        verbose_name=_("State"),
         max_length=2,
         default="IL",
         choices=US_STATES
     )
     zipcode = USZipCodeField(
+        verbose_name=_("Zip Code"),
         blank=True
     )
     longitude = models.DecimalField(
+        verbose_name=_("Longitude"),
         max_digits=12,
         decimal_places=8,
         default=0
     )
     latitude = models.DecimalField(
+        verbose_name=_("Latitude"),
         max_digits=12,
         decimal_places=8,
         default=0
     )
     neighborhood = models.CharField(
+        verbose_name=_("Neighborhood"),
         max_length=50,
         blank=True,
         default=''
     )
     phone = models.CharField(
+        verbose_name=_("Phone"),
+        help_text=_("Does this location have a unique phone number?"),
         max_length=20,
         blank=True,
         validators=[PHONE_REGEX]
