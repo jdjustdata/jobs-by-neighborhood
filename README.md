@@ -149,7 +149,7 @@ TODO: Finish documentation
     
     ```python manage.py makemessages -l es```
   
-  * This command will generate or update **.po** message files in the locale folder (*/www/locale/es*, where *es* 
+  * This command will generate or update **.po** message files in the locale folder (*/main/locale/es*, where *es* 
   designates the language code).
   
   * Translators will update the **.po** files with relevant translations in the '*msgstr*' key.  

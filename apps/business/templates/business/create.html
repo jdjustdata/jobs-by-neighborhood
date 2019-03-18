@@ -1,9 +1,10 @@
 {% extends 'base/base.html' %}
 {% block title %}{{title}}{% endblock %}
 {% block body %}
+{% load i18n %}
 
 <div class="container">
-    <h2 class="my-4">Create a New Business</h2>
+    <h2 class="my-4">{%  trans "Create a New Business" %}</h2>
     <form  method="post" action="{% url 'business:create' %}">
         {% csrf_token %}
         
