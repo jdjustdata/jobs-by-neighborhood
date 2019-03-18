@@ -31,7 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'jobsbyneighborhood.herokuapp.com',
     'livelihoodjobs.org',
-    'jobsbyneighborhooed-*.herokuapp.com'
+    '.herokuapp.com'
 ]
 
 # Domain Name used to display on template views
