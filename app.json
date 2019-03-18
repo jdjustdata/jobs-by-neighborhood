@@ -1,0 +1,47 @@
+{
+  "addons": [
+    "papertrail",
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    },
+    {
+      "url": "https://github.com/grauwoelfchen/heroku-buildpack-gettext.git"
+    }
+  ],
+  "description": "A hyper-local job search application, founded in Chicago, IL",
+  "env": {
+    "ADMINS": {
+      "required": true
+    },
+    "DEBUG_COLLECTSTATIC": {
+      "required": true
+    },
+    "DJANGO_SETTINGS_MODULE": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "MAPBOX_KEY": {
+      "required": true
+    },
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    },
+    "SECRET_KEY": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "jobs-by-neighborhood",
+  "scripts": {
+  },
+  "stack": "heroku-16"
+}
