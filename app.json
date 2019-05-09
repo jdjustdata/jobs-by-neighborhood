@@ -43,5 +43,5 @@
   "name": "jobs-by-neighborhood",
   "scripts": {
   },
-  "stack": "heroku-16"
+  "stack": "container"
 }
