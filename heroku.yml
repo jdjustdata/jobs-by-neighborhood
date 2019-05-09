@@ -10,4 +10,4 @@ release:
   command: ./code/heroku-release-tasks.sh
   image: worker
 run:
-  web: web: gunicorn main.wsgi --log-file -
+  web: gunicorn main.wsgi --log-file -
