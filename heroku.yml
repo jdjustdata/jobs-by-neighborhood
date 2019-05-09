@@ -5,7 +5,9 @@ setup:
 build:
   docker:
     web: Dockerfile
+    worker: worker/Dockerfile
 release:
+  image: worker
   command:
     - ./heroku-release-tasks.sh
 run:
