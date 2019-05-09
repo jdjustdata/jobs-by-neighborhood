@@ -5,10 +5,8 @@ setup:
 build:
   docker:
     web: Dockerfile
-    worker: worker/Dockerfile
 release:
   command:
     - ./heroku-release-tasks.sh
-  image: worker
 run:
   web: gunicorn main.wsgi --log-file -
