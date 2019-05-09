@@ -20,6 +20,4 @@ RUN \
 
 COPY . /code/
 
-RUN python manage.py makemessages -l es
-
 RUN python manage.py compilemessages
