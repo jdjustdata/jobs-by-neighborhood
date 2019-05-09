@@ -1,5 +1,7 @@
 FROM python:2.7.16-alpine
 
+ARG DJANGO_SETTINGS_MODULE
+
 ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /code
