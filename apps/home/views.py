@@ -33,9 +33,13 @@ def index(request):
 
     # set default map
     location = Location(neighborhood).get_coordinates()
+    print("Got location")
+    print(location)
 
     # jobs = Listings().retrieve_jobs().build_jobs()
     jobs = Job.objects.all()
+    print("Got jobs")
+    print(jobs)
 
     context = {
         'title': title,
@@ -43,6 +47,7 @@ def index(request):
         'api_key': MAPBOX_KEY,
         'jobs': jobs
     }
+    print(context)
     return render(request, "home/index.html", context)
 
 
