@@ -26,7 +26,7 @@ RUN if [ "$HEROKU_DEPLOY" = "False" ] ; then \
         python manage.py makemessages -l es ; \
         python manage.py compilemessages ; \
     else \
-        chown root:root heroku-release-tasks.sh \
-        chmod 700 heroku-release-tasks.sh \
-        chmod a+x heroku-release-tasks.sh \
+        chown root:root heroku-release-tasks.sh ; \
+        chmod 700 heroku-release-tasks.sh ; \
+        chmod a+x heroku-release-tasks.sh ; \
     fi
