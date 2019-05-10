@@ -16,6 +16,9 @@
     "ADMINS": {
       "required": true
     },
+    "DATABASE_URL": {
+      "required": true
+    },
     "DEBUG_COLLECTSTATIC": {
       "required": true
     },
@@ -32,7 +35,8 @@
       "required": true
     },
     "SECRET_KEY": {
-      "required": true
+      "required": true,
+      "generator": "secret"
     }
   },
   "formation": {
