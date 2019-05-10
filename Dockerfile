@@ -12,6 +12,7 @@ WORKDIR /code
 COPY requirements.txt /code/
 
 RUN \
+ apk add --no-cache curl && \
  apk add --no-cache gettext && \
  apk add --no-cache libffi-dev && \
  apk add --no-cache postgresql-libs && \
@@ -20,6 +21,8 @@ RUN \
  apk --purge del .build-deps
 
 COPY . /code/
+
+RUN chmod a+x ./heroku-release-tasks.sh
 
 RUN if [ "$HEROKU_DEPLOY" = "False" ] ; then \
         python manage.py makemessages -l es ; \
