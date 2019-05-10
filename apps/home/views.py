@@ -19,6 +19,7 @@ from ..geography.views import Location
 from ..jobs.views import Listings
 from ..jobs.models import Job
 from main.settings import LANGUAGE_CODE as DEFAULT_LANGUAGE
+from main.settings_environ import ADMINS
 
 
 def redirect_language(request):
@@ -28,6 +29,7 @@ def redirect_language(request):
 
 def index(request):
     print("In index view")
+    print(ADMINS)
     title = DOMAIN_NAME
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
 
@@ -40,6 +42,7 @@ def index(request):
     jobs = Job.objects.all()
     print("Got jobs")
     print(jobs)
+    print("After jobs")
 
     context = {
         'title': title,
