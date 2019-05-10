@@ -1,6 +1,7 @@
 FROM python:2.7.16-alpine
 
 ARG DJANGO_SETTINGS_MODULE
+ARG HEROKU_DEPLOY=False
 
 ENV PYTHONUNBUFFERED 1
 
@@ -20,4 +21,8 @@ RUN \
 
 COPY . /code/
 
-RUN python manage.py compilemessages
+RUN if [ "$HEROKU_DEPLOY" = "False" ] ;
+    then
+        python manage.py makemessages -l es ;
+        python manage.py compilemessages ;
+    fi

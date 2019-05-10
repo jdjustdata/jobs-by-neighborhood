@@ -5,7 +5,12 @@ setup:
 build:
   config:
     DJANGO_SETTINGS_MODULE: main.settings_deploy
+    HEROKU_DEPLOY: True
   docker:
     web: Dockerfile
+release:
+  command:
+    - ./heroku-release-tasks.sh
+  image: web
 run:
   web: gunicorn main.wsgi --log-file -
