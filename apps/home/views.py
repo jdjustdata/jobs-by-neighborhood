@@ -22,10 +22,12 @@ from main.settings import LANGUAGE_CODE as DEFAULT_LANGUAGE
 
 
 def redirect_language(request):
+    print("In redirect language!")
     return redirect('/' + DEFAULT_LANGUAGE + '/')
 
 
 def index(request):
+    print("In index view")
     title = DOMAIN_NAME
     neighborhood = request.GET.get('neighborhood', 'Wicker Park').replace('+', ' ')
 
