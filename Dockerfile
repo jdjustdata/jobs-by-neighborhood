@@ -21,8 +21,7 @@ RUN \
 
 COPY . /code/
 
-RUN if [ "$HEROKU_DEPLOY" = "False" ] ;
-    then
-        python manage.py makemessages -l es ;
-        python manage.py compilemessages ;
+RUN if [ "$HEROKU_DEPLOY" = "False" ] ; then \
+        python manage.py makemessages -l es ; \
+        python manage.py compilemessages ; \
     fi
