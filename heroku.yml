@@ -6,7 +6,7 @@ build:
     web: Dockerfile
 release:
   command:
-    - ./heroku-release-tasks.sh
+    - source heroku-release-tasks.sh
   image: web
 run:
   web: gunicorn main.wsgi --log-file -
