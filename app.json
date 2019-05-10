@@ -12,6 +12,9 @@
     }
   ],
   "description": "A hyper-local job search application, founded in Chicago, IL",
+  "scripts": {
+    "postdeploy": "pg_dump $DATABASE_URL | psql $DATABASE_URL"
+  },
   "env": {
     "ADMINS": {
       "required": true
