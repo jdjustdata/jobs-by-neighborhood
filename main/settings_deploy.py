@@ -24,7 +24,7 @@ from settings_environ import *
 from django.urls import reverse
 
 
-DEBUG = False
+DEBUG = True
 # List of strings representing the host/domain names that can server this Django site
 ALLOWED_HOSTS = [
     'localhost',
