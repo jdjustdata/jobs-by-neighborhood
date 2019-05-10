@@ -22,7 +22,9 @@ RUN \
 
 COPY . /code/
 
-RUN chmod a+x ./heroku-release-tasks.sh
+RUN ls -l
+RUN sudo chown root:root ./heroku-release-tasks.sh
+RUN sudo chmod 700 ./heroku-release-tasks.sh
 
 RUN if [ "$HEROKU_DEPLOY" = "False" ] ; then \
         python manage.py makemessages -l es ; \
