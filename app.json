@@ -12,8 +12,14 @@
     }
   ],
   "description": "A hyper-local job search application, founded in Chicago, IL",
+  "scripts": {
+    "postdeploy": "python manage.py makemigrations && python manage.py migrate"
+  },
   "env": {
     "ADMINS": {
+      "required": true
+    },
+    "DATABASE_URL": {
       "required": true
     },
     "DEBUG_COLLECTSTATIC": {
@@ -32,7 +38,8 @@
       "required": true
     },
     "SECRET_KEY": {
-      "required": true
+      "required": true,
+      "generator": "secret"
     }
   },
   "formation": {
@@ -40,8 +47,11 @@
       "quantity": 1
     }
   },
+  "worker": {
+    "quantity": 1
+  },
   "name": "jobs-by-neighborhood",
   "scripts": {
   },
-  "stack": "heroku-16"
+  "stack": "container"
 }
